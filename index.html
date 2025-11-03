@@ -1,53 +1,553 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>StrixEye - Coming Soon</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com ">
-  <link rel="preconnect" href="https://fonts.gstatic.com " crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-  <script src=" https://kit.fontawesome.com/a2b5c9d8f5.js " crossorigin="anonymous"></script>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>STRIXEYE — Eyes in the Sky, Intelligence on the Ground</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+  :root{
+    --bg-1: #07111a;
+    --bg-2: #0f2a3e;
+    --accent: #00e0ff;
+    --accent-2: #4cc9f0;
+    --glass: rgba(255,255,255,0.04);
+    --container: 1200px;
+    --header-height: 88px; /* fallback; updated by JS */
+  }
+
+  /* Reset */
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,Arial;
+    background: linear-gradient(180deg,var(--bg-1),var(--bg-2) 60%);
+    color:#eaf8ff;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    overflow-x:hidden;
+  }
+
+  .container{max-width:var(--container);margin:0 auto;padding:0 20px}
+
+  /* ---------- Intro Cinematic Overlay ---------- */
+  .intro-overlay{
+    position:fixed;inset:0;z-index:9999;
+    display:grid;place-items:center;
+    background:#000; /* cinematic black */
+    color:white;
+    touch-action:none;
+  }
+
+  .intro-stage{
+    text-align:center;
+    transform:translateY(0);
+    opacity:1;
+  }
+
+  .intro-logo{
+    height: 160px;
+    width: auto;
+    display:inline-block;
+    filter: drop-shadow(0 20px 60px rgba(0,0,0,0.85));
+    mix-blend-mode: screen; /* helps on blue backgrounds if logo has box */
+    transform: scale(.96);
+    opacity:0;
+    animation: introLogoIn .9s cubic-bezier(.2,.9,.3,1) forwards .1s;
+  }
+
+  @keyframes introLogoIn{
+    to { opacity:1; transform: scale(1); }
+  }
+
+  .intro-slogan{
+    margin-top:18px;
+    font-weight:600;
+    letter-spacing:1px;
+    color:var(--accent);
+    font-size:18px;
+    opacity:0;
+    transform:translateY(10px);
+    animation: introTextIn .9s forwards .6s;
+    text-transform:uppercase;
+  }
+
+  @keyframes introTextIn{
+    to { opacity:1; transform:translateY(0) }
+  }
+
+  .intro-glow{
+    position:absolute;
+    width:360px;height:360px;border-radius:50%;
+    filter:blur(48px);
+    background: radial-gradient(circle at 40% 40%, rgba(0,224,255,0.14), transparent 25%),
+                radial-gradient(circle at 70% 70%, rgba(76,201,240,0.09), transparent 30%);
+    z-index:1;
+    mix-blend-mode: screen;
+    opacity:0.95;
+    transform:scale(1.02);
+    animation: subtlePulse 3s ease-in-out infinite;
+  }
+  @keyframes subtlePulse{
+    0%,100%{ transform:scale(1); opacity:0.95 }
+    50%{ transform:scale(1.06); opacity:1 }
+  }
+
+  /* fade out overlay */
+  .intro-overlay.fade-out{
+    animation: overlayFadeOut .9s ease forwards;
+  }
+  @keyframes overlayFadeOut{
+    to { opacity:0; visibility:hidden; transform: translateY(-6px); }
+  }
+
+  /* ---------- Header (fixed but non-blocking) ---------- */
+  header{
+    position:fixed;left:0;right:0;top:20px;
+    z-index:1200;
+    display:flex;
+    justify-content:center;
+    pointer-events:none;
+  }
+  .header-inner{
+    pointer-events:auto;
+    width:calc(100% - 40px);
+    max-width:var(--container);
+    display:flex;align-items:center;justify-content:space-between;gap:18px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+    padding:10px 16px;border-radius:12px;
+    border:1px solid rgba(255,255,255,0.04);
+    backdrop-filter: blur(6px) saturate(120%);
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .header-inner.scrolled{ transform: translateY(-4px); box-shadow:0 18px 46px rgba(0,0,0,0.6) }
+
+  .brand{ display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit }
+  .logo-badge{ padding:6px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.03) }
+  .logo-badge img{ height:56px; width:auto; display:block; mix-blend-mode:screen }
+
+  .brand-text{ display:flex;flex-direction:column; line-height:1 }
+  .brand-title{ font-weight:800; letter-spacing:0.6px; font-size:16px; color:#e6fbff }
+  .brand-sub{ font-size:10px; color:rgba(255,255,255,0.55); text-transform:uppercase; letter-spacing:1.6px }
+
+  nav.main-nav{ display:flex; gap:20px; align-items:center }
+  nav.main-nav a{ color:rgba(255,255,255,0.92); text-decoration:none; font-weight:600; padding:8px 10px; border-radius:8px; transition:all .16s }
+  nav.main-nav a:hover{ color:var(--bg-1); background:linear-gradient(90deg,var(--accent),var(--accent-2)); transform:translateY(-3px) }
+
+  .menu-toggle{ display:none; border:0; background:transparent; color:var(--accent); font-size:20px }
+
+  /* ---------- Main / Hero ---------- */
+  main{ padding-top: calc(var(--header-height) + 28px); /* JS will update --header-height to avoid hiding */ }
+
+  .hero{
+    min-height:calc(100vh - 60px);
+    display:flex;align-items:center;
+    background: linear-gradient(135deg, rgba(5,18,26,0.4), rgba(10,38,58,0.4));
+    position:relative;overflow:hidden;padding:56px 0;
+  }
+  .hero-bg{
+    position:absolute; inset:0; background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=60') center/cover no-repeat;
+    opacity:0.12; z-index:0; filter:contrast(.9) saturate(.9);
+  }
+  .hero-inner{ z-index:2; max-width:1200px; margin:0 auto; padding:0 20px; display:flex; gap:40px; align-items:center; justify-content:space-between; flex-wrap:wrap; }
+  .hero-left{ flex:1; min-width:320px }
+  .hero-right{ flex:1; min-width:300px; display:flex; align-items:center; justify-content:center }
+
+  .hero h1{ font-size: clamp(30px,4.6vw,56px); margin-bottom:12px; line-height:1; font-weight:800; color:#e9fbff; }
+  .hero h1 span{ color:var(--accent) }
+
+  .tagline{ font-size: clamp(16px,2.2vw,22px); font-weight:500; color:var(--accent-2); margin-bottom:18px; text-transform:uppercase; letter-spacing:1px }
+
+  .hero p{ color:rgba(255,255,255,0.82); max-width:700px; margin-bottom:22px }
+
+  .hero-ctas{ display:flex; gap:12px; flex-wrap:wrap }
+  .btn{
+    padding:12px 22px;border-radius:999px;font-weight:700;text-decoration:none;display:inline-flex;gap:10px;align-items:center;
+    transition: transform .18s, box-shadow .18s;
+    border:1px solid rgba(255,255,255,0.06);
+  }
+  .btn-primary{ background: linear-gradient(90deg, var(--accent), var(--accent-2)); color: #06202a; box-shadow: 0 18px 40px rgba(0,224,255,0.08) }
+  .btn-primary:hover{ transform:translateY(-4px) }
+  .btn-secondary{ background:transparent; color:rgba(255,255,255,0.92) }
+
+  /* large hero logo frame (right) */
+  .hero-logo-frame{ width:min(480px,44vw); height:min(340px,40vh); border-radius:16px; display:grid;place-items:center; padding:28px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.03); box-shadow:0 18px 46px rgba(0,0,0,0.55) }
+  .hero-logo{ max-height:85%; max-width:85%; display:block; mix-blend-mode:screen; filter: drop-shadow(0 30px 80px rgba(0,0,0,0.7)); opacity:0; transform:translateY(10px) scale(.98); animation: heroLogoIn .9s cubic-bezier(.2,.9,.3,1) forwards .6s }
+  @keyframes heroLogoIn{ to{ opacity:1; transform:translateY(0) scale(1) } }
+
+  .logo-tag{ position:absolute; bottom:18px; left:50%; transform:translateX(-50%); font-size:12px; padding:6px 10px; border-radius:999px; color:rgba(255,255,255,0.72); background:linear-gradient(90deg, rgba(255,255,255,0.02), transparent); border:1px solid rgba(255,255,255,0.03) }
+
+  /* ---------- Sections ---------- */
+  section{ padding:80px 0 }
+  .section-header{ text-align:center; margin-bottom:40px }
+  .section-header h2{ font-size:28px; color:#eaffff }
+  .section-header p{ color:rgba(255,255,255,0.7); max-width:820px; margin:8px auto 0 }
+
+  /* cards, grids, etc - keep from original but tighter spacing */
+  .about-content{ display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center }
+  .about-features{ display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:18px }
+  .feature{ background: rgba(255,255,255,0.03); padding:18px; border-radius:10px; border-left:4px solid var(--accent); transition:transform .22s; }
+  .feature:hover{ transform:translateY(-6px) }
+
+  .services-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap:18px }
+  .service-card{ background: rgba(255,255,255,0.03); padding:26px;border-radius:12px; text-align:left; transition:transform .28s }
+  .service-card:hover{ transform:translateY(-8px) }
+
+  .tech-content{ display:grid; grid-template-columns:1fr 1fr; gap:36px; align-items:center }
+  .tech-visual{ width:320px; height:320px; border-radius:50%; display:grid; place-items:center; background: conic-gradient(var(--accent) 0 25%, var(--accent-2) 25% 50%, rgba(69,123,157,0.06) 50% 75%, rgba(29,53,87,0.06) 75% 100%); border:1px solid rgba(255,255,255,0.02) }
+
+  .team-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px }
+  .member{ padding:18px; border-radius:12px; background: rgba(255,255,255,0.02); text-align:center }
+
+  .clients-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:18px; align-items:center }
+
+  /* Footer */
+  footer{ background: linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.6)); padding:60px 0 }
+  .footer-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px }
+
+  /* small screens */
+  @media (max-width:1024px){
+    .about-content, .tech-content{ grid-template-columns:1fr }
+    nav.main-nav{ display:none }
+    .menu-toggle{ display:inline-flex }
+    .hero-right{ order: -1; margin-bottom:12px }
+    .services-grid{ grid-template-columns:1fr 1fr }
+    .team-grid{ grid-template-columns:1fr 1fr }
+    .clients-grid{ grid-template-columns:1fr 1fr }
+  }
+  @media (max-width:620px){
+    .services-grid{ grid-template-columns:1fr }
+    .team-grid{ grid-template-columns:1fr }
+    .footer-grid{ grid-template-columns:1fr 1fr }
+    .logo-badge img{ height:48px }
+    .intro-logo{ height:120px }
+    .intro-glow{ width:260px;height:260px }
+  }
+
+  /* Utility to hide the main content while intro runs for reduced flicker */
+  body.intro-hidden main, body.intro-hidden header{ visibility:hidden }
+  body.intro-hidden header{ pointer-events:none }
+</style>
 </head>
-<body>
-  <div class="container">
-    <div class="content">
-      <!-- Logo -->
-      <img src="logo.svg.svg" alt="StrixEye Logo" class="logo" />
+<body class="intro-hidden">
 
-      <!-- Tagline -->
-      <h1 class="fade-in">See beyond - Fly further</h1>
+  <!-- Cinematic Intro Overlay -->
+  <div class="intro-overlay" id="introOverlay" role="dialog" aria-label="Intro animation">
+    <div class="intro-glow" aria-hidden="true"></div>
 
-      <!-- Countdown -->
-      <div class="countdown" id="countdown">
-        <div class="time"><span id="days">00</span><small>Days</small></div>
-        <div class="time"><span id="hours">00</span><small>Hours</small></div>
-        <div class="time"><span id="minutes">00</span><small>Minutes</small></div>
-        <div class="time"><span id="seconds">00</span><small>Seconds</small></div>
+    <div class="intro-stage" id="introStage" tabindex="0">
+      <div style="display:inline-block" aria-hidden="true">
+        <!-- keep logo.png in same folder -->
+        <img src="logo.png" alt="STRIXEYE logo" class="intro-logo" />
       </div>
-
-      <!-- Email CTA -->
-      <p class="subtext">Be the first to know when we launch.</p>
-      <form class="subscribe-form" action="#" method="post">
-        <input type="email" placeholder="Enter your email" required />
-        <button type="submit">Notify Me</button>
-      </form>
-
-      <!-- Social Links -->
-      <div class="social">
-        <a href="https://twitter.com/strixeye " target="_blank"><i class="fab fa-twitter"></i></a>
-        <a href="https://instagram.com/strixeye " target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="https://linkedin.com/company/strixeye " target="_blank"><i class="fab fa-linkedin"></i></a>
-      </div>
+      <div class="intro-slogan">EYES IN THE SKY, INTELLIGENCE ON THE GROUND</div>
+      <div style="margin-top:18px; color:rgba(255,255,255,0.6); font-size:13px">Loading...</div>
     </div>
-
-    <footer>
-      <p>&copy; 2025 StrixEyE. All rights reserved.</p>
-    </footer>
   </div>
 
-  <script src="script.js"></script>
-</body>
+  <!-- Header -->
+  <header>
+    <div class="header-inner container" id="headerInner">
+      <a class="brand" href="#home" aria-label="STRIXEYE Home">
+        <div class="logo-badge" aria-hidden="true"><img src="logo.png" alt="" /></div>
+        <div class="brand-text">
+          <div class="brand-title">STRIXEYE</div>
+          <div class="brand-sub">Eyes in the sky</div>
+        </div>
+      </a>
 
+      <nav class="main-nav" role="navigation" aria-label="Main navigation" id="mainNav">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#technology">Technology</a>
+        <a href="#team">Team</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main content -->
+  <main id="pageMain" aria-hidden="true">
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="hero-inner container">
+        <div class="hero-left">
+          <h1>STRIXEYE <span>DRONE INTELLIGENCE</span></h1>
+          <div class="tagline">EYES IN THE SKY, INTELLIGENCE ON THE GROUND</div>
+          <p>We design and manufacture intelligent fixed-wing drones with embedded AI for inspection and surveillance, delivering sovereign solutions for Morocco and beyond.</p>
+          <div class="hero-ctas">
+            <a href="#technology" class="btn btn-primary">Our Technology</a>
+            <a href="#contact" class="btn btn-secondary">Contact Us</a>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <div class="hero-logo-frame" aria-hidden="true">
+            <img src="logo.png" alt="STRIXEYE logo large" class="hero-logo" />
+            <div class="logo-tag">Eyes in the sky — intelligence on the ground</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="container">
+        <div class="section-header">
+          <h2>About STRIXEYE</h2>
+          <p>Moroccan industrial startup (Deep Tech) specializing in the design and production of intelligent drones</p>
+        </div>
+
+        <div class="about-content">
+          <div class="about-text">
+            <h3>Pioneering Sovereign Drone Technology</h3>
+            <p>STRIXEYE combines aerospace engineering with embedded AI to create solutions that reduce technological dependency and build a local industrial ecosystem for drone technology in Morocco.</p>
+            <p>Our mission is to design, produce and certify drones locally while transferring knowledge to the national industry.</p>
+
+            <div class="about-features">
+              <div class="feature"><i class="fas fa-industry"></i><h4>Industrial Integration</h4><p>High local integration with national supply chain.</p></div>
+              <div class="feature"><i class="fas fa-graduation-cap"></i><h4>Knowledge Transfer</h4><p>Training and partnerships to grow expertise locally.</p></div>
+              <div class="feature"><i class="fas fa-shield-alt"></i><h4>Sovereign Solutions</h4><p>Secure on-device processing and encrypted comms.</p></div>
+              <div class="feature"><i class="fas fa-leaf"></i><h4>Eco-Efficient</h4><p>Low consumption platforms for long-endurance monitoring.</p></div>
+            </div>
+          </div>
+
+          <div class="about-image">
+            <div class="drone-img floating" style="background: linear-gradient(135deg, var(--accent), rgba(15,42,60,0.9)); height: 420px; border-radius: 10px; display:flex; align-items:center; justify-content:center; position:relative">
+              <i class="fas fa-drone" style="font-size:6.2rem;color:white; z-index:2"></i>
+              <div style="position:absolute; inset:0; border-radius:10px; background: radial-gradient(circle, transparent 30%, rgba(0,0,0,0.28) 70%)"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <div class="container">
+        <div class="section-header"><h2>Our Services</h2><p>Comprehensive drone-based solutions for various sectors</p></div>
+        <div class="services-grid">
+          <div class="service-card"><div class="service-icon"><i class="fas fa-bolt"></i></div><h3>Critical Infrastructure Inspection</h3><p>Monitoring power lines, pipelines, and facilities with AI analysis.</p></div>
+          <div class="service-card"><div class="service-icon"><i class="fas fa-mountain"></i></div><h3>Environmental Surveillance</h3><p>Forest fire detection, agriculture monitoring, and wildlife protection.</p></div>
+          <div class="service-card"><div class="service-icon"><i class="fas fa-shield-alt"></i></div><h3>Security & Defense</h3><p>Border surveillance, event security, and tactical reconnaissance.</p></div>
+          <div class="service-card"><div class="service-icon"><i class="fas fa-road"></i></div><h3>Transportation Monitoring</h3><p>Railway and highway inspection, traffic management and accident assessment.</p></div>
+          <div class="service-card"><div class="service-icon"><i class="fas fa-satellite-dish"></i></div><h3>Telecommunications</h3><p>Cell tower inspection and network optimization with thermal analysis.</p></div>
+          <div class="service-card"><div class="service-icon"><i class="fas fa-map-marked-alt"></i></div><h3>Mapping & Surveying</h3><p>High-resolution topographic mapping and 3D modeling.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TECHNOLOGY -->
+    <section class="technology" id="technology">
+      <div class="container">
+        <div class="section-header"><h2>Our Technology</h2><p>Cutting-edge drone systems with embedded AI capabilities</p></div>
+        <div class="tech-content">
+          <div>
+            <div class="tech-feature"><div class="tech-icon"><i class="fas fa-microchip"></i></div><div class="tech-text"><h4>Embedded AI Processing</h4><p>Real-time object detection and decision-making on edge.</p></div></div>
+            <div class="tech-feature"><div class="tech-icon"><i class="fas fa-eye"></i></div><div class="tech-text"><h4>Multi-Sensor Fusion</h4><p>Optical, thermal and multispectral imaging fused onboard.</p></div></div>
+            <div class="tech-feature"><div class="tech-icon"><i class="fas fa-puzzle-piece"></i></div><div class="tech-text"><h4>Modular Architecture</h4><p>Adaptable payloads for mission-specific requirements.</p></div></div>
+          </div>
+          <div class="tech-visual" aria-hidden="true"><div style="font-size:40px;color:var(--accent)"><i class="fas fa-brain"></i></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEAM -->
+    <section id="team">
+      <div class="container">
+        <div class="section-header"><h2>Our Team</h2><p>Expertise driving innovation in drone technology</p></div>
+        <div class="team-grid">
+          <div class="member"><div class="member-img"><i class="fas fa-user-tie"></i></div><h3>CEO</h3><div class="member-role">Production & Supply Chain</div><p class="muted">Industrial production management and supply chain optimization.</p></div>
+          <div class="member"><div class="member-img"><i class="fas fa-cogs"></i></div><h3>CTO</h3><div class="member-role">Aerospace Engineering</div><p class="muted">Drone design, aerodynamics and systems integration specialist.</p></div>
+          <div class="member"><div class="member-img"><i class="fas fa-laptop-code"></i></div><h3>CIO</h3><div class="member-role">AI & 3D Design</div><p class="muted">Embedded AI, computer vision and 3D modeling expert.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLIENTS -->
+    <section class="clients" id="clients">
+      <div class="container">
+        <div class="section-header"><h2>Our Partners</h2><p>Collaborating with leading institutions and organizations</p></div>
+        <div class="clients-grid">
+          <div class="client-logo"><i class="fas fa-university"></i></div>
+          <div class="client-logo"><i class="fas fa-industry"></i></div>
+          <div class="client-logo"><i class="fas fa-leaf"></i></div>
+          <div class="client-logo"><i class="fas fa-bolt"></i></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA / CONTACT -->
+    <section class="cta" id="contact">
+      <div class="container center">
+        <div class="section-header"><h2>Ready to Explore Drone Solutions?</h2><p>Contact us to learn how STRIXEYE's sovereign drone technology can transform your operations.</p></div>
+        <a class="btn btn-primary" href="mailto:contact@strixeye.ma"><i class="fas fa-envelope"></i> Get in touch</a>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="container">
+        <div class="footer-grid">
+          <div><h4>STRIXEYE</h4><p class="muted">Deep tech drone company focused on sovereign AI systems and manufacturing.</p></div>
+          <div><h4>Quick Links</h4><ul style="list-style:none;padding:0" class="muted"><li><a href="#home">Home</a></li><li><a href="#about">About</a></li><li><a href="#services">Services</a></li><li><a href="#technology">Technology</a></li></ul></div>
+          <div><h4>Services</h4><ul style="list-style:none;padding:0" class="muted"><li>Inspection</li><li>Surveillance</li><li>Mapping</li></ul></div>
+          <div><h4>Contact</h4><p class="muted"><i class="fas fa-map-marker-alt"></i> Témara, Morocco</p><p class="muted"><i class="fas fa-envelope"></i> contact@strixeye.ma</p></div>
+        </div>
+        <div style="margin-top:24px; text-align:center; color:rgba(255,255,255,0.6)">© <span id="year"></span> STRIXEYE — All rights reserved</div>
+      </div>
+    </footer>
+  </main>
+
+<script>
+  // Wait for DOM
+  document.addEventListener('DOMContentLoaded', () => {
+    const introOverlay = document.getElementById('introOverlay');
+    const pageMain = document.getElementById('pageMain');
+    const headerInner = document.getElementById('headerInner');
+
+    // Update header height CSS variable and scroll offsets for sections
+    function updateHeaderSpacing(){
+      const h = headerInner.getBoundingClientRect().height + 12; // small extra gap
+      document.documentElement.style.setProperty('--header-height', h + 'px');
+
+      // set scroll-margin-top for each section to avoid header overlap
+      document.querySelectorAll('section[id]').forEach(sec=>{
+        sec.style.scrollMarginTop = (h + 10) + 'px';
+      });
+
+      // ensure main top padding matches
+      document.querySelector('main').style.paddingTop = (h + 18) + 'px';
+    }
+    updateHeaderSpacing();
+    window.addEventListener('resize', updateHeaderSpacing);
+
+    // Reveal page after cinematic sequence
+    const ANIM_DURATION = 3200; // ms, total time before fade (adjustable)
+    let introTimeout;
+
+    function finishIntro(){
+      if (!introOverlay) return;
+      // add fade class
+      introOverlay.classList.add('fade-out');
+
+      // Remove intro-hidden class from body to show header/main
+      document.body.classList.remove('intro-hidden');
+      // make main accessible
+      pageMain.setAttribute('aria-hidden', 'false');
+
+      // remove overlay from DOM after animation
+      setTimeout(()=> {
+        if (introOverlay && introOverlay.parentNode) introOverlay.parentNode.removeChild(introOverlay);
+      }, 950);
+    }
+
+    // Start the cinematic intro unless user prefers reduced motion
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) {
+      finishIntro();
+    } else {
+      // start timeout to auto-finish intro
+      introTimeout = setTimeout(finishIntro, ANIM_DURATION);
+
+      // allow user to skip by clicking or pressing Escape
+      introOverlay.addEventListener('click', () => { clearTimeout(introTimeout); finishIntro(); });
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') { clearTimeout(introTimeout); finishIntro(); }
+      });
+    }
+
+    // Header shrink effect on scroll
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 40) headerInner.classList.add('scrolled');
+      else headerInner.classList.remove('scrolled');
+    });
+
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const mainNav = document.getElementById('mainNav');
+    let mobileOpen = false;
+
+    function openMobileMenu(){
+      // simple overlay nav (mobile)
+      const ov = document.createElement('div');
+      ov.id = 'mobileNav';
+      ov.style.position = 'fixed';
+      ov.style.left = '16px';
+      ov.style.right = '16px';
+      ov.style.top = (headerInner.getBoundingClientRect().bottom + 8) + 'px';
+      ov.style.background = 'rgba(6,18,28,0.96)';
+      ov.style.zIndex = 1300;
+      ov.style.padding = '16px';
+      ov.style.borderRadius = '12px';
+      ov.style.display = 'grid';
+      ov.style.gap = '12px';
+      ov.style.maxHeight = '60vh';
+      ov.style.overflow = 'auto';
+      ov.style.boxShadow = '0 30px 80px rgba(0,0,0,0.6)';
+
+      const links = ['home','about','services','technology','team','contact'];
+      links.forEach(id=>{
+        const a = document.createElement('a');
+        a.href = '#'+id;
+        a.textContent = id.charAt(0).toUpperCase() + id.slice(1);
+        a.style.padding = '12px 14px';
+        a.style.borderRadius = '8px';
+        a.style.display = 'block';
+        a.style.color = 'white';
+        a.style.textDecoration = 'none';
+        a.style.fontWeight = '700';
+        a.addEventListener('click', ()=> toggleMobileMenu(false));
+        ov.appendChild(a);
+      });
+      document.body.appendChild(ov);
+    }
+
+    function closeMobileMenu(){
+      const ov = document.getElementById('mobileNav');
+      if (ov) ov.remove();
+    }
+
+    function toggleMobileMenu(open){
+      mobileOpen = open ?? !mobileOpen;
+      menuToggle.setAttribute('aria-expanded', mobileOpen ? 'true' : 'false');
+      if (mobileOpen) openMobileMenu();
+      else closeMobileMenu();
+    }
+
+    menuToggle && menuToggle.addEventListener('click', ()=> toggleMobileMenu());
+
+    // Smooth scroll for internal links (works with dynamic header height)
+    document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
+      anchor.addEventListener('click', function(e){
+        const href = this.getAttribute('href');
+        if (!href || href === '#') return;
+        const target = document.querySelector(href);
+        if (!target) return;
+        e.preventDefault();
+        // compute top using bounding rect and header height
+        const headerH = headerInner.getBoundingClientRect().height + 12;
+        const top = target.getBoundingClientRect().top + window.scrollY - headerH - 8;
+        window.scrollTo({ top, behavior: 'smooth' });
+
+        // close mobile overlay if opened
+        if (mobileOpen) toggleMobileMenu(false);
+      });
+    });
+
+    // small: set current year
+    const y = new Date().getFullYear();
+    document.getElementById('year') && (document.getElementById('year').textContent = y);
+  });
+</script>
+</body>
 </html>
