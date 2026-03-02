@@ -13,7 +13,6 @@
 html{scroll-behavior:smooth}
 body{font-family:"Poppins",system-ui,Arial,sans-serif;background:var(--bg-1);color:#eaf8ff;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 .container{max-width:var(--container);margin:0 auto;padding:0 24px}
-/* INTRO */
 .intro-overlay{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;background:#000;touch-action:none}
 .intro-glow{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(0,224,255,0.12),transparent 70%);filter:blur(60px);animation:gPulse 3s ease-in-out infinite}
 @keyframes gPulse{0%,100%{transform:scale(1);opacity:.8}50%{transform:scale(1.1);opacity:1}}
@@ -28,7 +27,6 @@ body{font-family:"Poppins",system-ui,Arial,sans-serif;background:var(--bg-1);col
 .intro-overlay.fade-out{animation:overlayOut .9s ease forwards}
 @keyframes overlayOut{to{opacity:0;visibility:hidden}}
 body.intro-hidden main,body.intro-hidden header{visibility:hidden}
-/* HEADER */
 header{position:fixed;left:0;right:0;top:16px;z-index:1200;display:flex;justify-content:center;pointer-events:none}
 .header-inner{pointer-events:auto;width:calc(100% - 32px);max-width:var(--container);display:flex;align-items:center;justify-content:space-between;gap:16px;background:rgba(5,18,26,0.7);padding:10px 18px;border-radius:var(--radius);border:1px solid rgba(255,255,255,0.06);backdrop-filter:blur(12px) saturate(140%);transition:box-shadow .25s,background .25s}
 .header-inner.scrolled{background:rgba(5,18,26,0.95);box-shadow:0 16px 48px rgba(0,0,0,0.7)}
@@ -41,12 +39,11 @@ nav.main-nav{display:flex;gap:4px;align-items:center}
 nav.main-nav a{color:rgba(255,255,255,0.85);text-decoration:none;font-weight:600;font-size:14px;padding:8px 12px;border-radius:8px;transition:all .18s}
 nav.main-nav a:hover{color:var(--bg-1);background:linear-gradient(90deg,var(--accent),var(--accent-2))}
 .menu-toggle{display:none;border:0;background:transparent;color:var(--accent);font-size:20px;cursor:pointer;padding:4px}
-/* HERO */
 main{padding-top:calc(var(--header-height) + 20px)}
 .hero{min-height:calc(100vh - 60px);display:flex;align-items:center;position:relative;overflow:hidden;padding:60px 0}
 .hero-bg-img{position:absolute;inset:0;z-index:0}
-.hero-bg-img img{width:100%;height:100%;object-fit:cover;opacity:.15;filter:saturate(.7) contrast(.9)}
-.hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(135deg,rgba(5,18,26,.75) 0%,rgba(5,18,26,.4) 60%,transparent 100%)}
+.hero-bg-img img{width:100%;height:100%;object-fit:cover;opacity:.18;filter:saturate(.6) contrast(1.1)}
+.hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(135deg,rgba(5,18,26,.82) 0%,rgba(5,18,26,.45) 60%,transparent 100%)}
 .hero-inner{z-index:2;max-width:var(--container);margin:0 auto;padding:0 24px;display:flex;gap:48px;align-items:center;justify-content:space-between;flex-wrap:wrap}
 .hero-left{flex:1;min-width:300px}
 .hero-right{flex:1;min-width:300px;display:flex;align-items:center;justify-content:center}
@@ -67,20 +64,18 @@ main{padding-top:calc(var(--header-height) + 20px)}
 .hero-stats{display:flex;gap:28px;flex-wrap:wrap;margin-top:36px;padding-top:28px;border-top:1px solid rgba(255,255,255,.07)}
 .hero-stat-val{font-size:26px;font-weight:800;color:var(--accent);line-height:1}
 .hero-stat-label{font-size:11px;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:1.2px;margin-top:3px}
-.drone-card{width:min(460px,42vw);border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.06);box-shadow:0 30px 80px rgba(0,0,0,.7);position:relative}
+.drone-card{width:min(480px,44vw);border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.06);box-shadow:0 30px 80px rgba(0,0,0,.7);position:relative}
 .drone-card img{width:100%;display:block;aspect-ratio:4/3;object-fit:cover}
 .drone-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,18,26,.9) 0%,transparent 50%)}
 .drone-card-label{position:absolute;bottom:16px;left:16px;right:16px;display:flex;align-items:center;justify-content:space-between}
 .drone-card-label span{font-size:12px;font-weight:700;color:rgba(255,255,255,.9);text-transform:uppercase;letter-spacing:1px}
 .drone-status{display:flex;align-items:center;gap:6px;background:rgba(0,224,255,.1);border:1px solid rgba(0,224,255,.2);border-radius:999px;padding:4px 10px;font-size:11px;color:var(--accent);font-weight:600}
 .drone-status-dot{width:5px;height:5px;border-radius:50%;background:var(--accent);animation:blink 1.2s infinite}
-/* SECTIONS */
 section{padding:90px 0}
 .section-header{text-align:center;margin-bottom:56px}
 .section-tag{display:inline-block;color:var(--accent);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
 .section-header h2{font-size:clamp(24px,3vw,38px);font-weight:800;color:#e6fbff;margin-bottom:10px}
 .section-header p{color:rgba(255,255,255,.65);max-width:600px;margin:0 auto;line-height:1.7;font-size:15px}
-/* ABOUT */
 #about{background:linear-gradient(180deg,var(--bg-1),var(--bg-2))}
 .about-content{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
 .about-text h3{font-size:clamp(18px,2vw,26px);font-weight:800;margin-bottom:14px;color:#e6fbff}
@@ -93,7 +88,6 @@ section{padding:90px 0}
 .feature p{font-size:12px;color:rgba(255,255,255,.6);line-height:1.5}
 .about-img{border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.05);box-shadow:0 30px 80px rgba(0,0,0,.6)}
 .about-img img{width:100%;display:block;aspect-ratio:4/3;object-fit:cover}
-/* SERVICES */
 #services{background:var(--bg-1)}
 .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .service-card{background:rgba(255,255,255,.03);padding:28px;border-radius:var(--radius);border:1px solid rgba(255,255,255,.05);transition:transform .28s,box-shadow .28s,border-color .28s;position:relative;overflow:hidden}
@@ -104,7 +98,6 @@ section{padding:90px 0}
 .service-icon i{color:var(--accent);font-size:20px}
 .service-card h3{font-size:15px;font-weight:700;margin-bottom:8px;color:#e6fbff}
 .service-card p{font-size:13px;color:rgba(255,255,255,.65);line-height:1.6}
-/* TECHNOLOGY */
 #technology{background:linear-gradient(180deg,var(--bg-1),var(--bg-2))}
 .tech-content{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
 .tech-features{display:flex;flex-direction:column;gap:18px}
@@ -115,23 +108,21 @@ section{padding:90px 0}
 .tech-text h4{font-size:15px;font-weight:700;color:#e6fbff;margin-bottom:5px}
 .tech-text p{font-size:13px;color:rgba(255,255,255,.65);line-height:1.6}
 .tech-visual-wrap{display:flex;align-items:center;justify-content:center}
-.tech-visual{width:min(360px,90%);border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.06);box-shadow:0 30px 80px rgba(0,0,0,.6);position:relative}
-.tech-visual img{width:100%;display:block;aspect-ratio:4/5;object-fit:cover;opacity:.85}
-.tech-visual-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,18,26,.85) 0%,transparent 50%);display:flex;flex-direction:column;justify-content:flex-end;padding:20px}
+.tech-visual{width:min(380px,90%);border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.06);box-shadow:0 30px 80px rgba(0,0,0,.6);position:relative}
+.tech-visual img{width:100%;display:block;aspect-ratio:4/5;object-fit:cover;opacity:.9}
+.tech-visual-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,18,26,.9) 0%,transparent 50%);display:flex;flex-direction:column;justify-content:flex-end;padding:20px}
 .tech-specs{display:flex;flex-wrap:wrap;gap:8px}
 .tech-spec-pill{background:rgba(0,224,255,.1);border:1px solid rgba(0,224,255,.2);border-radius:999px;padding:5px 12px;font-size:11px;font-weight:700;color:var(--accent)}
-/* TEAM */
-#team{background:var(--bg-1)}
-.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-.member{padding:28px 22px;border-radius:var(--radius);background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);text-align:center;transition:transform .25s,border-color .25s}
-.member:hover{transform:translateY(-8px);border-color:rgba(0,224,255,.15)}
-.member-avatar{width:72px;height:72px;border-radius:50%;margin:0 auto 16px;background:linear-gradient(135deg,rgba(0,224,255,.14),rgba(76,201,240,.06));border:2px solid rgba(0,224,255,.2);display:flex;align-items:center;justify-content:center}
-.member-avatar i{font-size:28px;color:var(--accent)}
-.member h3{font-size:17px;font-weight:700;color:#e6fbff;margin-bottom:4px}
-.member-role{font-size:12px;color:var(--accent);font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
-.member p{font-size:13px;color:rgba(255,255,255,.6);line-height:1.6}
-/* CONTACT */
-#contact{background:linear-gradient(180deg,var(--bg-1),var(--bg-2))}
+#specs{background:var(--bg-1)}
+.specs-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:860px;margin:0 auto}
+.spec-block{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:28px;position:relative;overflow:hidden}
+.spec-block::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),transparent)}
+.spec-block h4{font-size:12px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:16px}
+.spec-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.spec-row:last-child{border-bottom:none}
+.spec-label{font-size:13px;color:rgba(255,255,255,.55)}
+.spec-value{font-size:14px;font-weight:700;color:#e6fbff}
+#contact{background:linear-gradient(180deg,var(--bg-2),var(--bg-1))}
 .contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
 .contact-info h3{font-size:clamp(18px,2vw,26px);font-weight:800;margin-bottom:14px;color:#e6fbff}
 .contact-info p{color:rgba(255,255,255,.7);line-height:1.75;margin-bottom:28px;font-size:15px}
@@ -151,7 +142,6 @@ input:focus,textarea:focus,select:focus{border-color:rgba(0,224,255,.4)}
 select option{background:var(--bg-2)}
 textarea{resize:vertical;min-height:110px}
 .btn-full{width:100%;justify-content:center}
-/* FOOTER */
 footer{background:rgba(0,0,0,.5);padding:60px 0 30px;border-top:1px solid rgba(255,255,255,.05)}
 .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;margin-bottom:40px}
 .footer-logo-wrap{display:flex;align-items:center;gap:10px;margin-bottom:14px;text-decoration:none}
@@ -167,7 +157,6 @@ footer{background:rgba(0,0,0,.5);padding:60px 0 30px;border-top:1px solid rgba(2
 .social-links{display:flex;gap:10px}
 .social-link{width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);font-size:14px;text-decoration:none;transition:all .18s}
 .social-link:hover{background:rgba(0,224,255,.1);border-color:rgba(0,224,255,.25);color:var(--accent)}
-/* RESPONSIVE */
 @media(max-width:1024px){
   .about-content,.tech-content,.contact-wrap{grid-template-columns:1fr}
   .about-img{order:-1}
@@ -175,13 +164,13 @@ footer{background:rgba(0,0,0,.5);padding:60px 0 30px;border-top:1px solid rgba(2
   nav.main-nav{display:none}
   .menu-toggle{display:inline-flex}
   .services-grid{grid-template-columns:1fr 1fr}
-  .team-grid{grid-template-columns:1fr 1fr}
+  .specs-grid{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr 1fr}
   .drone-card{width:min(440px,80vw)}
   .hero-right{order:-1;margin-bottom:12px}
 }
 @media(max-width:620px){
-  .services-grid,.team-grid,.footer-grid{grid-template-columns:1fr}
+  .services-grid,.footer-grid{grid-template-columns:1fr}
   .about-features,.form-row{grid-template-columns:1fr}
   .hero-stats{gap:18px}
 }
@@ -212,7 +201,7 @@ footer{background:rgba(0,0,0,.5);padding:60px 0 30px;border-top:1px solid rgba(2
       <a href="#about">About</a>
       <a href="#services">Services</a>
       <a href="#technology">Technology</a>
-      <a href="#team">Team</a>
+      <a href="#specs">Specs</a>
       <a href="#contact">Contact</a>
     </nav>
     <button class="menu-toggle" id="menuToggle" aria-label="Open menu"><i class="fas fa-bars"></i></button>
@@ -222,20 +211,20 @@ footer{background:rgba(0,0,0,.5);padding:60px 0 30px;border-top:1px solid rgba(2
 <main id="pageMain" aria-hidden="true">
 
   <section class="hero" id="home">
-    <div class="hero-bg-img"><img src="https://images.unsplash.com/photo-1473968512647-3e447244af8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=60" alt="" /></div>
+    <div class="hero-bg-img"><img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=60" alt="" /></div>
     <div class="hero-overlay"></div>
     <div class="hero-inner">
       <div class="hero-left">
         <div class="badge"><span class="badge-dot"></span>Moroccan Deep Tech · Est. 2024</div>
-        <h1><span class="block">INTELLIGENT</span><span class="block accent">DRONE</span><span class="block">SYSTEMS</span></h1>
+        <h1><span class="block">INTELLIGENT</span><span class="block accent">FIXED-WING</span><span class="block">SYSTEMS</span></h1>
         <div class="tagline">Eyes in the Sky — Intelligence on the Ground</div>
-        <p class="hero-desc">We design and manufacture sovereign fixed-wing UAVs embedded with AI — built in Morocco, for Morocco and beyond. From infrastructure inspection to tactical surveillance.</p>
+        <p class="hero-desc">We design and manufacture sovereign fixed-wing UAVs embedded with AI — built in Morocco, for Morocco and beyond. Long-endurance platforms for infrastructure inspection, environmental surveillance and critical operations.</p>
         <div class="hero-ctas">
           <a href="#technology" class="btn btn-primary"><i class="fas fa-microchip"></i> Our Technology</a>
           <a href="#contact" class="btn btn-secondary"><i class="fas fa-envelope"></i> Get in Touch</a>
         </div>
         <div class="hero-stats">
-          <div class="hero-stat"><div class="hero-stat-val">150<span style="font-size:15px">km/h</span></div><div class="hero-stat-label">Max Speed</div></div>
+          <div class="hero-stat"><div class="hero-stat-val">150<span style="font-size:15px">km/h</span></div><div class="hero-stat-label">Cruise Speed</div></div>
           <div class="hero-stat"><div class="hero-stat-val">10<span style="font-size:15px">kg</span></div><div class="hero-stat-label">Payload</div></div>
           <div class="hero-stat"><div class="hero-stat-val">8<span style="font-size:15px">h</span></div><div class="hero-stat-label">Endurance</div></div>
           <div class="hero-stat"><div class="hero-stat-val">1000<span style="font-size:15px">km</span></div><div class="hero-stat-label">Range</div></div>
@@ -243,11 +232,11 @@ footer{background:rgba(0,0,0,.5);padding:60px 0 30px;border-top:1px solid rgba(2
       </div>
       <div class="hero-right">
         <div class="drone-card">
-          <img src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=70" alt="Fixed-wing drone" />
+          <img src="https://images.unsplash.com/photo-1579829366248-204fe8413f31?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=70" alt="Fixed-wing UAV in flight" />
           <div class="drone-card-overlay"></div>
           <div class="drone-card-label">
             <span>Fixed-Wing UAV Platform</span>
-            <div class="drone-status"><span class="drone-status-dot"></span>Active</div>
+            <div class="drone-status"><span class="drone-status-dot"></span>Mission Ready</div>
           </div>
         </div>
       </div>
@@ -264,17 +253,17 @@ footer{background:rgba(0,0,0,.5);padding:60px 0 30px;border-top:1px solid rgba(2
       <div class="about-content">
         <div class="about-text">
           <h3>Built in Morocco, Engineered for the World</h3>
-          <p>STRIXEYE designs, produces and certifies intelligent drones locally while transferring knowledge to the national industry. Our platforms deliver real-time onboard AI processing — no cloud dependency, no latency.</p>
-          <p>Our mission is sovereignty: every component, every algorithm, every certification — done on Moroccan soil.</p>
+          <p>STRIXEYE designs, produces and certifies intelligent fixed-wing drones locally while transferring knowledge to the national industry. Our platforms deliver real-time onboard AI processing — no cloud dependency, no latency.</p>
+          <p>Our mission is sovereignty: every component, every algorithm, every certification — done on Moroccan soil. Fixed-wing architecture gives us the endurance and range that rotary-wing platforms simply cannot match.</p>
           <div class="about-features">
             <div class="feature"><i class="fas fa-industry"></i><h4>Local Manufacturing</h4><p>High integration with the Moroccan national supply chain.</p></div>
             <div class="feature"><i class="fas fa-graduation-cap"></i><h4>Knowledge Transfer</h4><p>Training programs and university partnerships.</p></div>
             <div class="feature"><i class="fas fa-shield-alt"></i><h4>Sovereign AI</h4><p>On-device processing — no external dependencies.</p></div>
-            <div class="feature"><i class="fas fa-leaf"></i><h4>Eco-Efficient</h4><p>Low-consumption platforms for long endurance missions.</p></div>
+            <div class="feature"><i class="fas fa-wind"></i><h4>Long Endurance</h4><p>Fixed-wing efficiency — 8+ hours on a single mission.</p></div>
           </div>
         </div>
         <div class="about-img">
-          <img src="https://images.unsplash.com/photo-1507582020474-9a35b7d455d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=70" alt="Drone over landscape" />
+          <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=70" alt="Fixed-wing aircraft on runway" />
         </div>
       </div>
     </div>
@@ -285,15 +274,15 @@ footer{background:rgba(0,0,0,.5);padding:60px 0 30px;border-top:1px solid rgba(2
       <div class="section-header">
         <div class="section-tag">What We Do</div>
         <h2>Our Services</h2>
-        <p>AI-powered drone solutions for critical sectors — from energy infrastructure to border security.</p>
+        <p>AI-powered fixed-wing drone solutions for critical sectors — from energy infrastructure to border security.</p>
       </div>
       <div class="services-grid">
-        <div class="service-card"><div class="service-icon"><i class="fas fa-bolt"></i></div><h3>Infrastructure Inspection</h3><p>Monitoring power lines, pipelines and industrial facilities with AI-powered defect analysis and real-time reporting.</p></div>
-        <div class="service-card"><div class="service-icon"><i class="fas fa-mountain"></i></div><h3>Environmental Surveillance</h3><p>Forest fire early detection, agriculture monitoring, watershed protection and wildlife tracking over large areas.</p></div>
-        <div class="service-card"><div class="service-icon"><i class="fas fa-shield-alt"></i></div><h3>Security & Defense</h3><p>Border surveillance, event security, tactical reconnaissance and counter-UAV detection systems.</p></div>
-        <div class="service-card"><div class="service-icon"><i class="fas fa-road"></i></div><h3>Transportation Monitoring</h3><p>Railway and highway inspection, traffic flow analysis and post-accident rapid assessment.</p></div>
-        <div class="service-card"><div class="service-icon"><i class="fas fa-satellite-dish"></i></div><h3>Telecommunications</h3><p>Cell tower inspection, antenna alignment verification and network infrastructure thermal analysis.</p></div>
-        <div class="service-card"><div class="service-icon"><i class="fas fa-map-marked-alt"></i></div><h3>Mapping & Surveying</h3><p>High-resolution topographic mapping, 3D terrain modeling and precision agriculture GIS data.</p></div>
+        <div class="service-card"><div class="service-icon"><i class="fas fa-bolt"></i></div><h3>Infrastructure Inspection</h3><p>Monitoring power lines, pipelines and industrial facilities with AI-powered defect analysis over hundreds of kilometers per mission.</p></div>
+        <div class="service-card"><div class="service-icon"><i class="fas fa-mountain"></i></div><h3>Environmental Surveillance</h3><p>Forest fire early detection, agriculture monitoring, watershed protection and wildlife tracking over large areas — only possible with fixed-wing endurance.</p></div>
+        <div class="service-card"><div class="service-icon"><i class="fas fa-shield-alt"></i></div><h3>Border & Security</h3><p>Long-range border surveillance, tactical reconnaissance and persistent area monitoring with encrypted secure datalinks.</p></div>
+        <div class="service-card"><div class="service-icon"><i class="fas fa-road"></i></div><h3>Transportation Monitoring</h3><p>Railway and highway inspection, traffic flow analysis and post-incident rapid aerial assessment across extended corridors.</p></div>
+        <div class="service-card"><div class="service-icon"><i class="fas fa-satellite-dish"></i></div><h3>Telecommunications</h3><p>Cell tower inspection, antenna alignment verification and network infrastructure thermal analysis at scale.</p></div>
+        <div class="service-card"><div class="service-icon"><i class="fas fa-map-marked-alt"></i></div><h3>Mapping & Surveying</h3><p>High-resolution topographic mapping, 3D terrain modeling and precision agriculture GIS data across large territories.</p></div>
       </div>
     </div>
   </section>
@@ -303,25 +292,25 @@ footer{background:rgba(0,0,0,.5);padding:60px 0 30px;border-top:1px solid rgba(2
       <div class="section-header">
         <div class="section-tag">How It Works</div>
         <h2>Our Technology</h2>
-        <p>Edge AI + aerospace engineering — real-time intelligence, no cloud dependency, mission-ready in minutes.</p>
+        <p>Edge AI fused with fixed-wing aerodynamics — real-time intelligence, no cloud dependency, mission-ready in minutes.</p>
       </div>
       <div class="tech-content">
         <div class="tech-features">
-          <div class="tech-feature"><div class="tech-icon"><i class="fas fa-microchip"></i></div><div class="tech-text"><h4>Embedded AI Processing</h4><p>Real-time object detection and decision-making running entirely on the drone — no latency, no signal dependency.</p></div></div>
-          <div class="tech-feature"><div class="tech-icon"><i class="fas fa-eye"></i></div><div class="tech-text"><h4>Multi-Sensor Fusion</h4><p>Optical, thermal and multispectral imaging fused onboard for day/night operations and precise target identification.</p></div></div>
-          <div class="tech-feature"><div class="tech-icon"><i class="fas fa-puzzle-piece"></i></div><div class="tech-text"><h4>Modular Architecture</h4><p>Mission-specific payload swapping in under 5 minutes — inspection, surveillance, mapping, or counter-drone modules.</p></div></div>
-          <div class="tech-feature"><div class="tech-icon"><i class="fas fa-lock"></i></div><div class="tech-text"><h4>Encrypted Communications</h4><p>End-to-end encrypted telemetry and video with jam-resistant protocols for secure sovereign operations.</p></div></div>
+          <div class="tech-feature"><div class="tech-icon"><i class="fas fa-microchip"></i></div><div class="tech-text"><h4>Embedded AI Processing</h4><p>Real-time object detection and decision-making running entirely on the drone — no latency, no signal dependency. YOLOv8 inference at the edge.</p></div></div>
+          <div class="tech-feature"><div class="tech-icon"><i class="fas fa-eye"></i></div><div class="tech-text"><h4>Multi-Sensor Fusion</h4><p>Optical, thermal and multispectral imaging fused onboard for day/night operations and precise target identification at altitude.</p></div></div>
+          <div class="tech-feature"><div class="tech-icon"><i class="fas fa-puzzle-piece"></i></div><div class="tech-text"><h4>Modular Payload Bay</h4><p>Mission-specific payload swapping in under 5 minutes — inspection, surveillance, mapping, or SIGINT modules on the same fixed-wing airframe.</p></div></div>
+          <div class="tech-feature"><div class="tech-icon"><i class="fas fa-lock"></i></div><div class="tech-text"><h4>Encrypted Datalinks</h4><p>End-to-end encrypted telemetry and video with jam-resistant frequency-hopping protocols for sovereign secure operations.</p></div></div>
         </div>
         <div class="tech-visual-wrap">
           <div class="tech-visual">
-            <img src="https://images.unsplash.com/photo-1527977966376-1c8408f9f108?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=70" alt="Drone technology" />
+            <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=70" alt="Fixed-wing aircraft systems" />
             <div class="tech-visual-overlay">
               <div class="tech-specs">
                 <span class="tech-spec-pill">YOLOv8 Real-time</span>
                 <span class="tech-spec-pill">Edge AI</span>
                 <span class="tech-spec-pill">Thermal + Optical</span>
                 <span class="tech-spec-pill">GNSS + INS</span>
-                <span class="tech-spec-pill">30km Comms</span>
+                <span class="tech-spec-pill">30km Datalink</span>
               </div>
             </div>
           </div>
@@ -330,17 +319,46 @@ footer{background:rgba(0,0,0,.5);padding:60px 0 30px;border-top:1px solid rgba(2
     </div>
   </section>
 
-  <section id="team">
+  <section id="specs">
     <div class="container">
       <div class="section-header">
-        <div class="section-tag">The People</div>
-        <h2>Our Team</h2>
-        <p>Engineers, researchers and operators who build what they believe in.</p>
+        <div class="section-tag">Platform Data</div>
+        <h2>Technical Specifications</h2>
+        <p>Engineered for endurance, reliability and sovereign operations in demanding environments.</p>
       </div>
-      <div class="team-grid">
-        <div class="member"><div class="member-avatar"><i class="fas fa-user-tie"></i></div><h3>CEO</h3><div class="member-role">Strategy & Operations</div><p>Industrial production management, supply chain optimization and business development across Morocco and Africa.</p></div>
-        <div class="member"><div class="member-avatar"><i class="fas fa-cogs"></i></div><h3>CTO</h3><div class="member-role">Aerospace Engineering</div><p>Fixed-wing aerodynamics, propulsion systems and drone certification with 10+ years field experience.</p></div>
-        <div class="member"><div class="member-avatar"><i class="fas fa-laptop-code"></i></div><h3>CIO</h3><div class="member-role">AI & Systems</div><p>Embedded AI, computer vision and 3D modeling — the intelligence stack behind every Strixeye platform.</p></div>
+      <div class="specs-grid">
+        <div class="spec-block">
+          <h4><i class="fas fa-plane" style="margin-right:8px"></i>Airframe</h4>
+          <div class="spec-row"><span class="spec-label">Configuration</span><span class="spec-value">Fixed-Wing, Pusher</span></div>
+          <div class="spec-row"><span class="spec-label">Wingspan</span><span class="spec-value">3.2 m</span></div>
+          <div class="spec-row"><span class="spec-label">MTOW</span><span class="spec-value">18 kg</span></div>
+          <div class="spec-row"><span class="spec-label">Payload Capacity</span><span class="spec-value">10 kg</span></div>
+          <div class="spec-row"><span class="spec-label">Material</span><span class="spec-value">Carbon Fibre / Composite</span></div>
+        </div>
+        <div class="spec-block">
+          <h4><i class="fas fa-tachometer-alt" style="margin-right:8px"></i>Performance</h4>
+          <div class="spec-row"><span class="spec-label">Cruise Speed</span><span class="spec-value">120 km/h</span></div>
+          <div class="spec-row"><span class="spec-label">Max Speed</span><span class="spec-value">150 km/h</span></div>
+          <div class="spec-row"><span class="spec-label">Endurance</span><span class="spec-value">8+ hours</span></div>
+          <div class="spec-row"><span class="spec-label">Operational Range</span><span class="spec-value">1,000 km</span></div>
+          <div class="spec-row"><span class="spec-label">Service Ceiling</span><span class="spec-value">4,000 m</span></div>
+        </div>
+        <div class="spec-block">
+          <h4><i class="fas fa-microchip" style="margin-right:8px"></i>AI & Sensors</h4>
+          <div class="spec-row"><span class="spec-label">AI Platform</span><span class="spec-value">NVIDIA Jetson Orin</span></div>
+          <div class="spec-row"><span class="spec-label">Detection Model</span><span class="spec-value">YOLOv8 Custom</span></div>
+          <div class="spec-row"><span class="spec-label">Optical Camera</span><span class="spec-value">4K / 30fps EO</span></div>
+          <div class="spec-row"><span class="spec-label">Thermal Camera</span><span class="spec-value">LWIR 640×512</span></div>
+          <div class="spec-row"><span class="spec-label">Inference Latency</span><span class="spec-value">&lt;50 ms</span></div>
+        </div>
+        <div class="spec-block">
+          <h4><i class="fas fa-satellite-dish" style="margin-right:8px"></i>Communications</h4>
+          <div class="spec-row"><span class="spec-label">Datalink Range</span><span class="spec-value">30 km LOS</span></div>
+          <div class="spec-row"><span class="spec-label">Video Downlink</span><span class="spec-value">HD Encrypted</span></div>
+          <div class="spec-row"><span class="spec-label">Navigation</span><span class="spec-value">GPS / GLONASS / INS</span></div>
+          <div class="spec-row"><span class="spec-label">GNSS Anti-Spoofing</span><span class="spec-value">Yes</span></div>
+          <div class="spec-row"><span class="spec-label">Autonomous Mode</span><span class="spec-value">Full + Waypoint</span></div>
+        </div>
       </div>
     </div>
   </section>
@@ -355,7 +373,7 @@ footer{background:rgba(0,0,0,.5);padding:60px 0 30px;border-top:1px solid rgba(2
       <div class="contact-wrap">
         <div class="contact-info">
           <h3>Ready to Deploy Drone Intelligence?</h3>
-          <p>Contact us to discuss how STRIXEYE's sovereign UAV solutions can transform your operations. We respond within 24 hours.</p>
+          <p>Contact us to discuss how STRIXEYE's sovereign fixed-wing UAV solutions can transform your operations. We respond within 24 hours.</p>
           <div class="contact-details">
             <div class="contact-item">
               <div class="contact-item-icon"><i class="fas fa-envelope"></i></div>
@@ -383,7 +401,8 @@ footer{background:rgba(0,0,0,.5);padding:60px 0 30px;border-top:1px solid rgba(2
               <select>
                 <option value="">Select a topic...</option>
                 <option>Infrastructure Inspection</option>
-                <option>Security & Surveillance</option>
+                <option>Border &amp; Security</option>
+                <option>Environmental Surveillance</option>
                 <option>Partnership / Investment</option>
                 <option>Technical Demo</option>
                 <option>Other</option>
@@ -402,9 +421,9 @@ footer{background:rgba(0,0,0,.5);padding:60px 0 30px;border-top:1px solid rgba(2
       <div class="footer-grid">
         <div class="footer-brand">
           <a class="footer-logo-wrap" href="#home"><img src="logo.png" alt="" /><span>STRIXEYE</span></a>
-          <p>Deep-tech drone company building sovereign AI-powered UAVs for Morocco and beyond.</p>
+          <p>Deep-tech drone company building sovereign AI-powered fixed-wing UAVs for Morocco and beyond.</p>
         </div>
-        <div class="footer-col"><h4>Company</h4><ul><li><a href="#about">About Us</a></li><li><a href="#technology">Technology</a></li><li><a href="#team">Team</a></li><li><a href="#contact">Contact</a></li></ul></div>
+        <div class="footer-col"><h4>Company</h4><ul><li><a href="#about">About Us</a></li><li><a href="#technology">Technology</a></li><li><a href="#specs">Specifications</a></li><li><a href="#contact">Contact</a></li></ul></div>
         <div class="footer-col"><h4>Services</h4><ul><li><a href="#services">Inspection</a></li><li><a href="#services">Surveillance</a></li><li><a href="#services">Mapping</a></li><li><a href="#services">Security</a></li></ul></div>
         <div class="footer-col"><h4>Contact</h4><ul><li><a href="mailto:contact@strixeye.ma">contact@strixeye.ma</a></li><li><a href="#">Témara, Morocco</a></li></ul></div>
       </div>
@@ -457,7 +476,7 @@ document.addEventListener('DOMContentLoaded',()=>{
       const ov=document.createElement('div');
       ov.id='mobileNav';
       Object.assign(ov.style,{position:'fixed',left:'16px',right:'16px',top:(headerInner.getBoundingClientRect().bottom+8)+'px',background:'rgba(5,18,26,0.97)',zIndex:1300,padding:'16px',borderRadius:'14px',display:'grid',gap:'8px',boxShadow:'0 30px 80px rgba(0,0,0,.7)',border:'1px solid rgba(255,255,255,.07)'});
-      ['home','about','services','technology','team','contact'].forEach(id=>{
+      ['home','about','services','technology','specs','contact'].forEach(id=>{
         const a=document.createElement('a');
         a.href='#'+id;a.textContent=id.charAt(0).toUpperCase()+id.slice(1);
         Object.assign(a.style,{padding:'12px 16px',borderRadius:'8px',display:'block',color:'white',textDecoration:'none',fontWeight:'700',fontSize:'15px'});
