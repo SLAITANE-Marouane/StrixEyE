@@ -43,7 +43,7 @@
     navItems.forEach(id => {
       const a = document.createElement('a');
       a.href = '#' + id;
-      a.textContent = id === 'field-ops' ? 'Field Ops' : id.charAt(0).toUpperCase() + id.slice(1);
+      a.textContent = id === 'field-ops' ? 'Engineering' : id.charAt(0).toUpperCase() + id.slice(1);
       a.addEventListener('click', closeMobileNav);
       mobileNav.appendChild(a);
     });
