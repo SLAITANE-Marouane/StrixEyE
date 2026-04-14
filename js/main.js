@@ -4,7 +4,7 @@
   const headerInner = document.getElementById('headerInner');
   const header = document.querySelector('header');
   const menuToggle = document.getElementById('menuToggle');
-  const navItems = ['home', 'about', 'platforms', 'services', 'technology', 'field-ops', 'specs', 'contact'];
+  const navItems = ['home', 'about', 'why-now', 'platforms', 'services', 'technology', 'field-ops', 'specs', 'contact'];
 
   const updateHeaderHeight = () => {
     if (!headerInner) return;
@@ -43,7 +43,8 @@
     navItems.forEach(id => {
       const a = document.createElement('a');
       a.href = '#' + id;
-      a.textContent = id === 'field-ops' ? 'Engineering' : id.charAt(0).toUpperCase() + id.slice(1);
+      const labels = { 'field-ops': 'Engineering', 'why-now': 'Why Now' };
+      a.textContent = labels[id] || (id.charAt(0).toUpperCase() + id.slice(1));
       a.addEventListener('click', closeMobileNav);
       mobileNav.appendChild(a);
     });
