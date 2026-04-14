@@ -1,243 +1,128 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>STRIXEYE — Eyes in the Sky, Intelligence on the Ground</title>
-<meta name="description" content="Moroccan deep-tech drone company — intelligent fixed-wing UAVs with embedded AI for inspection, surveillance and sovereign operations." />
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<style>
-:root{--bg-1:#05121a;--bg-2:#0d2436;--accent:#00e0ff;--accent-2:#4cc9f0;--container:1200px;--header-height:88px;--radius:14px}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:"Poppins",system-ui,Arial,sans-serif;background:var(--bg-1);color:#eaf8ff;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-.container{max-width:var(--container);margin:0 auto;padding:0 24px}
-.intro-overlay{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;background:#000;touch-action:none}
-.intro-glow{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(0,224,255,0.12),transparent 70%);filter:blur(60px);animation:gPulse 3s ease-in-out infinite}
-@keyframes gPulse{0%,100%{transform:scale(1);opacity:.8}50%{transform:scale(1.1);opacity:1}}
-.intro-stage{text-align:center;position:relative;z-index:2}
-.intro-logo{height:160px;width:auto;mix-blend-mode:screen;opacity:0;transform:scale(.94);animation:logoIn .9s cubic-bezier(.2,.9,.3,1) forwards .1s}
-@keyframes logoIn{to{opacity:1;transform:scale(1)}}
-.intro-slogan{margin-top:20px;font-weight:700;letter-spacing:2px;color:var(--accent);font-size:14px;text-transform:uppercase;opacity:0;transform:translateY(10px);animation:textIn .9s forwards .65s}
-.intro-bar{margin:28px auto 0;width:180px;height:2px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;opacity:0;animation:textIn .5s forwards 1s}
-.intro-bar-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2));animation:barFill 2s forwards 1.1s}
-@keyframes barFill{from{width:0}to{width:100%}}
-@keyframes textIn{to{opacity:1;transform:translateY(0)}}
-.intro-overlay.fade-out{animation:overlayOut .9s ease forwards}
-@keyframes overlayOut{to{opacity:0;visibility:hidden}}
-body.intro-hidden main,body.intro-hidden header{visibility:hidden}
-header{position:fixed;left:0;right:0;top:16px;z-index:1200;display:flex;justify-content:center;pointer-events:none}
-.header-inner{pointer-events:auto;width:calc(100% - 32px);max-width:var(--container);display:flex;align-items:center;justify-content:space-between;gap:16px;background:rgba(5,18,26,0.7);padding:10px 18px;border-radius:var(--radius);border:1px solid rgba(255,255,255,0.06);backdrop-filter:blur(12px) saturate(140%);transition:box-shadow .25s,background .25s}
-.header-inner.scrolled{background:rgba(5,18,26,0.95);box-shadow:0 16px 48px rgba(0,0,0,0.7)}
-.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
-.logo-badge{padding:6px;border-radius:10px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.04)}
-.logo-badge img{height:52px;width:auto;display:block;mix-blend-mode:screen}
-.brand-title{font-weight:800;font-size:16px;color:#e6fbff}
-.brand-sub{font-size:10px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:1.8px;margin-top:2px}
-nav.main-nav{display:flex;gap:4px;align-items:center}
-nav.main-nav a{color:rgba(255,255,255,0.85);text-decoration:none;font-weight:600;font-size:14px;padding:8px 12px;border-radius:8px;transition:all .18s}
-nav.main-nav a:hover{color:var(--bg-1);background:linear-gradient(90deg,var(--accent),var(--accent-2))}
-.menu-toggle{display:none;border:0;background:transparent;color:var(--accent);font-size:20px;cursor:pointer;padding:4px}
-main{padding-top:calc(var(--header-height) + 20px)}
-.hero{min-height:calc(100vh - 60px);display:flex;align-items:center;position:relative;overflow:hidden;padding:60px 0}
-.hero-bg-img{position:absolute;inset:0;z-index:0}
-.hero-bg-img img{width:100%;height:100%;object-fit:cover;opacity:.18;filter:saturate(.6) contrast(1.1)}
-.hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(135deg,rgba(5,18,26,.82) 0%,rgba(5,18,26,.45) 60%,transparent 100%)}
-.hero-inner{z-index:2;max-width:var(--container);margin:0 auto;padding:0 24px;display:flex;gap:48px;align-items:center;justify-content:space-between;flex-wrap:wrap}
-.hero-left{flex:1;min-width:300px}
-.hero-right{flex:1;min-width:300px;display:flex;align-items:center;justify-content:center}
-.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,224,255,0.08);border:1px solid rgba(0,224,255,0.2);color:var(--accent);font-size:11px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;padding:6px 14px;border-radius:999px;margin-bottom:18px}
-.badge-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:blink 1.5s infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
-.hero h1{font-size:clamp(32px,4.8vw,60px);line-height:1.05;font-weight:800;color:#e9fbff;margin-bottom:14px}
-.hero h1 .accent{color:var(--accent)}
-.hero h1 .block{display:block}
-.tagline{font-size:clamp(12px,1.5vw,16px);font-weight:600;color:rgba(0,224,255,.8);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:18px}
-.hero-desc{color:rgba(255,255,255,.8);line-height:1.75;max-width:560px;margin-bottom:28px;font-size:15px}
-.hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
-.btn{padding:13px 24px;border-radius:999px;font-weight:700;font-size:14px;text-decoration:none;display:inline-flex;gap:10px;align-items:center;transition:transform .2s,box-shadow .2s;cursor:pointer;border:none}
-.btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#05121a;box-shadow:0 12px 32px rgba(0,224,255,0.2)}
-.btn-primary:hover{transform:translateY(-4px);box-shadow:0 20px 48px rgba(0,224,255,.35)}
-.btn-secondary{background:rgba(255,255,255,.06);color:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.12)}
-.btn-secondary:hover{background:rgba(255,255,255,.1);transform:translateY(-3px)}
-.hero-stats{display:flex;gap:28px;flex-wrap:wrap;margin-top:36px;padding-top:28px;border-top:1px solid rgba(255,255,255,.07)}
-.hero-stat-val{font-size:26px;font-weight:800;color:var(--accent);line-height:1}
-.hero-stat-label{font-size:11px;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:1.2px;margin-top:3px}
-.drone-card{width:min(480px,44vw);border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.06);box-shadow:0 30px 80px rgba(0,0,0,.7);position:relative}
-.drone-card img{width:100%;display:block;aspect-ratio:4/3;object-fit:cover}
-.drone-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,18,26,.9) 0%,transparent 50%)}
-.drone-card-label{position:absolute;bottom:16px;left:16px;right:16px;display:flex;align-items:center;justify-content:space-between}
-.drone-card-label span{font-size:12px;font-weight:700;color:rgba(255,255,255,.9);text-transform:uppercase;letter-spacing:1px}
-.drone-status{display:flex;align-items:center;gap:6px;background:rgba(0,224,255,.1);border:1px solid rgba(0,224,255,.2);border-radius:999px;padding:4px 10px;font-size:11px;color:var(--accent);font-weight:600}
-.drone-status-dot{width:5px;height:5px;border-radius:50%;background:var(--accent);animation:blink 1.2s infinite}
-section{padding:90px 0}
-.section-header{text-align:center;margin-bottom:56px}
-.section-tag{display:inline-block;color:var(--accent);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
-.section-header h2{font-size:clamp(24px,3vw,38px);font-weight:800;color:#e6fbff;margin-bottom:10px}
-.section-header p{color:rgba(255,255,255,.65);max-width:600px;margin:0 auto;line-height:1.7;font-size:15px}
-#about{background:linear-gradient(180deg,var(--bg-1),var(--bg-2))}
-.about-content{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
-.about-text h3{font-size:clamp(18px,2vw,26px);font-weight:800;margin-bottom:14px;color:#e6fbff}
-.about-text p{color:rgba(255,255,255,.75);line-height:1.75;margin-bottom:14px;font-size:15px}
-.about-features{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}
-.feature{background:rgba(255,255,255,.03);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,.05);border-left:3px solid var(--accent);transition:transform .22s,box-shadow .22s}
-.feature:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(0,0,0,.4)}
-.feature i{color:var(--accent);font-size:18px;margin-bottom:8px;display:block}
-.feature h4{font-size:13px;font-weight:700;margin-bottom:4px;color:#e6fbff}
-.feature p{font-size:12px;color:rgba(255,255,255,.6);line-height:1.5}
-.about-img{border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.05);box-shadow:0 30px 80px rgba(0,0,0,.6)}
-.about-img img{width:100%;display:block;aspect-ratio:4/3;object-fit:cover}
-#services{background:var(--bg-1)}
-.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.service-card{background:rgba(255,255,255,.03);padding:28px;border-radius:var(--radius);border:1px solid rgba(255,255,255,.05);transition:transform .28s,box-shadow .28s,border-color .28s;position:relative;overflow:hidden}
-.service-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,224,255,.04),transparent);opacity:0;transition:opacity .28s}
-.service-card:hover{transform:translateY(-8px);box-shadow:0 24px 56px rgba(0,0,0,.5);border-color:rgba(0,224,255,.18)}
-.service-card:hover::before{opacity:1}
-.service-icon{width:48px;height:48px;border-radius:12px;margin-bottom:16px;background:linear-gradient(135deg,rgba(0,224,255,.12),rgba(76,201,240,.06));border:1px solid rgba(0,224,255,.15);display:flex;align-items:center;justify-content:center}
-.service-icon i{color:var(--accent);font-size:20px}
-.service-card h3{font-size:15px;font-weight:700;margin-bottom:8px;color:#e6fbff}
-.service-card p{font-size:13px;color:rgba(255,255,255,.65);line-height:1.6}
-#technology{background:linear-gradient(180deg,var(--bg-1),var(--bg-2))}
-.tech-content{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
-.tech-features{display:flex;flex-direction:column;gap:18px}
-.tech-feature{display:flex;gap:16px;align-items:flex-start;background:rgba(255,255,255,.03);padding:20px;border-radius:12px;border:1px solid rgba(255,255,255,.05);transition:transform .22s,border-color .22s}
-.tech-feature:hover{transform:translateX(6px);border-color:rgba(0,224,255,.15)}
-.tech-icon{width:42px;height:42px;min-width:42px;border-radius:10px;background:linear-gradient(135deg,rgba(0,224,255,.14),rgba(76,201,240,.06));border:1px solid rgba(0,224,255,.15);display:flex;align-items:center;justify-content:center}
-.tech-icon i{color:var(--accent);font-size:17px}
-.tech-text h4{font-size:15px;font-weight:700;color:#e6fbff;margin-bottom:5px}
-.tech-text p{font-size:13px;color:rgba(255,255,255,.65);line-height:1.6}
-.tech-visual-wrap{display:flex;align-items:center;justify-content:center}
-.tech-visual{width:min(380px,90%);border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.06);box-shadow:0 30px 80px rgba(0,0,0,.6);position:relative}
-.tech-visual img{width:100%;display:block;aspect-ratio:4/5;object-fit:cover;opacity:.9}
-.tech-visual-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,18,26,.9) 0%,transparent 50%);display:flex;flex-direction:column;justify-content:flex-end;padding:20px}
-.tech-specs{display:flex;flex-wrap:wrap;gap:8px}
-.tech-spec-pill{background:rgba(0,224,255,.1);border:1px solid rgba(0,224,255,.2);border-radius:999px;padding:5px 12px;font-size:11px;font-weight:700;color:var(--accent)}
-#specs{background:var(--bg-1)}
-.specs-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:860px;margin:0 auto}
-.spec-block{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:28px;position:relative;overflow:hidden}
-.spec-block::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),transparent)}
-.spec-block h4{font-size:12px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:16px}
-.spec-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04)}
-.spec-row:last-child{border-bottom:none}
-.spec-label{font-size:13px;color:rgba(255,255,255,.55)}
-.spec-value{font-size:14px;font-weight:700;color:#e6fbff}
-#contact{background:linear-gradient(180deg,var(--bg-2),var(--bg-1))}
-.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
-.contact-info h3{font-size:clamp(18px,2vw,26px);font-weight:800;margin-bottom:14px;color:#e6fbff}
-.contact-info p{color:rgba(255,255,255,.7);line-height:1.75;margin-bottom:28px;font-size:15px}
-.contact-details{display:flex;flex-direction:column;gap:14px}
-.contact-item{display:flex;align-items:center;gap:14px}
-.contact-item-icon{width:40px;height:40px;min-width:40px;border-radius:10px;background:rgba(0,224,255,.08);border:1px solid rgba(0,224,255,.15);display:flex;align-items:center;justify-content:center}
-.contact-item-icon i{color:var(--accent);font-size:15px}
-.contact-item-label{font-size:11px;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:1px;margin-bottom:1px}
-.contact-item a,.contact-item p{font-size:14px;color:rgba(255,255,255,.85);text-decoration:none;font-weight:500}
-.contact-item a:hover{color:var(--accent)}
-.contact-form{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:var(--radius);padding:30px}
-.form-group{margin-bottom:18px}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-label{display:block;font-size:12px;font-weight:600;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
-input,textarea,select{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:12px 14px;color:#eaf8ff;font-family:inherit;font-size:14px;transition:border-color .2s;outline:none}
-input:focus,textarea:focus,select:focus{border-color:rgba(0,224,255,.4)}
-select option{background:var(--bg-2)}
-textarea{resize:vertical;min-height:110px}
-.btn-full{width:100%;justify-content:center}
-footer{background:rgba(0,0,0,.5);padding:60px 0 30px;border-top:1px solid rgba(255,255,255,.05)}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;margin-bottom:40px}
-.footer-logo-wrap{display:flex;align-items:center;gap:10px;margin-bottom:14px;text-decoration:none}
-.footer-logo-wrap img{height:42px;mix-blend-mode:screen}
-.footer-logo-wrap span{font-weight:800;font-size:16px;color:#e6fbff}
-.footer-brand p{font-size:13px;color:rgba(255,255,255,.5);line-height:1.7}
-.footer-col h4{font-size:12px;font-weight:700;color:rgba(255,255,255,.9);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:16px}
-.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
-.footer-col ul li a{font-size:13px;color:rgba(255,255,255,.5);text-decoration:none;transition:color .18s}
-.footer-col ul li a:hover{color:var(--accent)}
-.footer-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-top:28px;border-top:1px solid rgba(255,255,255,.05)}
-.footer-bottom p{font-size:12px;color:rgba(255,255,255,.35)}
-.social-links{display:flex;gap:10px}
-.social-link{width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);font-size:14px;text-decoration:none;transition:all .18s}
-.social-link:hover{background:rgba(0,224,255,.1);border-color:rgba(0,224,255,.25);color:var(--accent)}
-@media(max-width:1024px){
-  .about-content,.tech-content,.contact-wrap{grid-template-columns:1fr}
-  .about-img{order:-1}
-  .tech-visual-wrap{order:-1}
-  nav.main-nav{display:none}
-  .menu-toggle{display:inline-flex}
-  .services-grid{grid-template-columns:1fr 1fr}
-  .specs-grid{grid-template-columns:1fr}
-  .footer-grid{grid-template-columns:1fr 1fr}
-  .drone-card{width:min(440px,80vw)}
-  .hero-right{order:-1;margin-bottom:12px}
-}
-@media(max-width:620px){
-  .services-grid,.footer-grid{grid-template-columns:1fr}
-  .about-features,.form-row{grid-template-columns:1fr}
-  .hero-stats{gap:18px}
-}
-</style>
-</head>
-<body class="intro-hidden">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>STRIXEYE — Sovereign Fixed-Wing UAVs · AI-Powered Aerial Intelligence · Morocco</title>
+<meta name="description" content="STRIXEYE designs and manufactures sovereign AI-powered fixed-wing UAVs in Morocco. Long-endurance platforms for infrastructure inspection, environmental surveillance, and security operations." />
+<meta name="keywords" content="StrixEye, Morocco drones, fixed-wing UAV, AI drones, sovereign drones, aerial intelligence, infrastructure inspection, Témara" />
+<meta name="author" content="STRIXEYE" />
+<meta name="theme-color" content="#05080c" />
+<link rel="canonical" href="https://strixeye.ma/" />
 
-<div class="intro-overlay" id="introOverlay">
-  <div class="intro-glow"></div>
-  <div class="intro-stage">
-    <img src="logo.png" alt="STRIXEYE" class="intro-logo" />
-    <div class="intro-slogan">Eyes in the Sky — Intelligence on the Ground</div>
-    <div class="intro-bar"><div class="intro-bar-fill"></div></div>
-  </div>
-</div>
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="STRIXEYE" />
+<meta property="og:title" content="STRIXEYE — Sovereign Fixed-Wing UAVs" />
+<meta property="og:description" content="Moroccan deep-tech company building AI-powered fixed-wing drones for infrastructure, surveillance, and security operations." />
+<meta property="og:url" content="https://strixeye.ma/" />
+<meta property="og:image" content="https://strixeye.ma/logo.png" />
+<meta property="og:locale" content="en_US" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="STRIXEYE — Sovereign Fixed-Wing UAVs" />
+<meta name="twitter:description" content="Moroccan deep-tech company building AI-powered fixed-wing drones." />
+<meta name="twitter:image" content="https://strixeye.ma/logo.png" />
+
+<link rel="icon" type="image/png" href="logo.png" />
+<link rel="apple-touch-icon" href="logo.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+<link rel="preload" as="image" href="field-ops/desert-ops-field.jpg" />
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="css/main.css" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "STRIXEYE",
+  "url": "https://strixeye.ma",
+  "logo": "https://strixeye.ma/logo.png",
+  "description": "Moroccan deep-tech startup designing sovereign AI-powered fixed-wing UAVs.",
+  "foundingDate": "2024",
+  "email": "contact@strixeye.ma",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Témara",
+    "addressCountry": "MA"
+  },
+  "sameAs": [
+    "https://www.linkedin.com/company/strixeye",
+    "https://twitter.com/strixeye"
+  ]
+}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#home">Skip to main content</a>
 
 <header>
   <div class="header-inner container" id="headerInner">
-    <a class="brand" href="#home">
-      <div class="logo-badge"><img src="logo.png" alt="" /></div>
-      <div>
-        <div class="brand-title">STRIXEYE</div>
-        <div class="brand-sub">Eyes in the sky</div>
-      </div>
+    <a class="brand" href="#home" aria-label="StrixEye home">
+      <span class="logo-badge"><img src="logo.png" alt="" role="presentation" width="32" height="32" /></span>
+      <span>
+        <span class="brand-title">STRIXEYE</span>
+        <span class="brand-sub">Eyes in the sky</span>
+      </span>
     </a>
-    <nav class="main-nav" id="mainNav">
-      <a href="#home">Home</a>
+    <nav class="main-nav" aria-label="Primary">
       <a href="#about">About</a>
       <a href="#services">Services</a>
       <a href="#technology">Technology</a>
+      <a href="#field-ops">Field Ops</a>
       <a href="#specs">Specs</a>
       <a href="#contact">Contact</a>
     </nav>
-    <button class="menu-toggle" id="menuToggle" aria-label="Open menu"><i class="fas fa-bars"></i></button>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+      <i class="fas fa-bars" aria-hidden="true"></i>
+    </button>
   </div>
 </header>
 
-<main id="pageMain" aria-hidden="true">
+<main id="pageMain">
 
   <section class="hero" id="home">
-    <div class="hero-bg-img"><img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=60" alt="" /></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-inner">
-      <div class="hero-left">
-        <div class="badge"><span class="badge-dot"></span>Moroccan Deep Tech · Est. 2024</div>
-        <h1><span class="block">INTELLIGENT</span><span class="block accent">FIXED-WING</span><span class="block">SYSTEMS</span></h1>
-        <div class="tagline">Eyes in the Sky — Intelligence on the Ground</div>
-        <p class="hero-desc">We design and manufacture sovereign fixed-wing UAVs embedded with AI — built in Morocco, for Morocco and beyond. Long-endurance platforms for infrastructure inspection, environmental surveillance and critical operations.</p>
+    <div class="hero-media" aria-hidden="true">
+      <video autoplay muted loop playsinline preload="metadata" poster="field-ops/desert-ops-field.jpg">
+        <source src="demo.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <div class="container hero-inner">
+      <div class="hero-content fade-in">
+        <div class="hero-tag"><span class="hero-tag-dot"></span>Moroccan Deep Tech · Est. 2024</div>
+        <h1>
+          <span class="block">INTELLIGENT</span>
+          <span class="block accent">fixed-wing</span>
+          <span class="block">SYSTEMS</span>
+        </h1>
+        <div class="hero-tagline">Eyes in the Sky — Intelligence on the Ground</div>
+        <p class="hero-desc">We design and manufacture sovereign fixed-wing UAVs with onboard AI — engineered in Morocco, built for critical operations at scale.</p>
         <div class="hero-ctas">
-          <a href="#technology" class="btn btn-primary"><i class="fas fa-microchip"></i> Our Technology</a>
-          <a href="#contact" class="btn btn-secondary"><i class="fas fa-envelope"></i> Get in Touch</a>
-        </div>
-        <div class="hero-stats">
-          <div class="hero-stat"><div class="hero-stat-val">150<span style="font-size:15px">km/h</span></div><div class="hero-stat-label">Cruise Speed</div></div>
-          <div class="hero-stat"><div class="hero-stat-val">10<span style="font-size:15px">kg</span></div><div class="hero-stat-label">Payload</div></div>
-          <div class="hero-stat"><div class="hero-stat-val">8<span style="font-size:15px">h</span></div><div class="hero-stat-label">Endurance</div></div>
-          <div class="hero-stat"><div class="hero-stat-val">1000<span style="font-size:15px">km</span></div><div class="hero-stat-label">Range</div></div>
+          <a href="#technology" class="btn btn-primary"><i class="fas fa-microchip" aria-hidden="true"></i> Our Technology</a>
+          <a href="#contact" class="btn btn-secondary"><i class="fas fa-envelope" aria-hidden="true"></i> Get in Touch</a>
         </div>
       </div>
-      <div class="hero-right">
-        <div class="drone-card">
-          <img src="https://images.unsplash.com/photo-1579829366248-204fe8413f31?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=70" alt="Fixed-wing UAV in flight" />
-          <div class="drone-card-overlay"></div>
-          <div class="drone-card-label">
-            <span>Fixed-Wing UAV Platform</span>
-            <div class="drone-status"><span class="drone-status-dot"></span>Mission Ready</div>
-          </div>
+      <div class="hero-stats fade-in" role="list" aria-label="Platform performance specifications">
+        <div class="hero-stat" role="listitem">
+          <div class="hero-stat-val">150<span>km/h</span></div>
+          <div class="hero-stat-label">Cruise Speed</div>
+        </div>
+        <div class="hero-stat" role="listitem">
+          <div class="hero-stat-val">10<span>kg</span></div>
+          <div class="hero-stat-label">Payload</div>
+        </div>
+        <div class="hero-stat" role="listitem">
+          <div class="hero-stat-val">8<span>h</span></div>
+          <div class="hero-stat-label">Endurance</div>
+        </div>
+        <div class="hero-stat" role="listitem">
+          <div class="hero-stat-val">1000<span>km</span></div>
+          <div class="hero-stat-label">Range</div>
         </div>
       </div>
     </div>
@@ -245,25 +130,45 @@ footer{background:rgba(0,0,0,.5);padding:60px 0 30px;border-top:1px solid rgba(2
 
   <section id="about">
     <div class="container">
-      <div class="section-header">
-        <div class="section-tag">Who We Are</div>
-        <h2>Pioneering Sovereign Drone Technology</h2>
-        <p>Moroccan deep-tech startup combining aerospace engineering and embedded AI to build locally — reducing technological dependency and growing a national drone ecosystem.</p>
+      <div class="section-head fade-in">
+        <div class="section-label">01 &nbsp;/&nbsp; About</div>
+        <h2>Pioneering sovereign drone technology.</h2>
+        <p>Moroccan deep-tech combining aerospace engineering and embedded AI — built locally, certified locally, owned locally.</p>
       </div>
-      <div class="about-content">
-        <div class="about-text">
-          <h3>Built in Morocco, Engineered for the World</h3>
+
+      <div class="about-grid">
+        <div class="about-text fade-in">
+          <h3>Built in Morocco, engineered for the world.</h3>
           <p>STRIXEYE designs, produces and certifies intelligent fixed-wing drones locally while transferring knowledge to the national industry. Our platforms deliver real-time onboard AI processing — no cloud dependency, no latency.</p>
-          <p>Our mission is sovereignty: every component, every algorithm, every certification — done on Moroccan soil. Fixed-wing architecture gives us the endurance and range that rotary-wing platforms simply cannot match.</p>
+          <p>Every component, every algorithm, every certification is executed on Moroccan soil. Fixed-wing architecture gives us the endurance and range rotary-wing platforms cannot match.</p>
+
           <div class="about-features">
-            <div class="feature"><i class="fas fa-industry"></i><h4>Local Manufacturing</h4><p>High integration with the Moroccan national supply chain.</p></div>
-            <div class="feature"><i class="fas fa-graduation-cap"></i><h4>Knowledge Transfer</h4><p>Training programs and university partnerships.</p></div>
-            <div class="feature"><i class="fas fa-shield-alt"></i><h4>Sovereign AI</h4><p>On-device processing — no external dependencies.</p></div>
-            <div class="feature"><i class="fas fa-wind"></i><h4>Long Endurance</h4><p>Fixed-wing efficiency — 8+ hours on a single mission.</p></div>
+            <div class="feature">
+              <i class="fas fa-industry" aria-hidden="true"></i>
+              <h4>Local Manufacturing</h4>
+              <p>High integration with the Moroccan national supply chain.</p>
+            </div>
+            <div class="feature">
+              <i class="fas fa-graduation-cap" aria-hidden="true"></i>
+              <h4>Knowledge Transfer</h4>
+              <p>Training programs and university partnerships.</p>
+            </div>
+            <div class="feature">
+              <i class="fas fa-shield-alt" aria-hidden="true"></i>
+              <h4>Sovereign AI</h4>
+              <p>On-device processing — no external dependencies.</p>
+            </div>
+            <div class="feature">
+              <i class="fas fa-wind" aria-hidden="true"></i>
+              <h4>Long Endurance</h4>
+              <p>Fixed-wing efficiency — 8+ hours per mission.</p>
+            </div>
           </div>
         </div>
-        <div class="about-img">
-          <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=70" alt="Fixed-wing aircraft on runway" />
+
+        <div class="about-img fade-in">
+          <img src="field-ops/desert-ops-field.jpg" alt="StrixEye team on ground operations in desert terrain, Morocco" loading="lazy" decoding="async" />
+          <div class="about-img-caption">Desert ground ops · Morocco · 2024</div>
         </div>
       </div>
     </div>
@@ -271,47 +176,117 @@ footer{background:rgba(0,0,0,.5);padding:60px 0 30px;border-top:1px solid rgba(2
 
   <section id="services">
     <div class="container">
-      <div class="section-header">
-        <div class="section-tag">What We Do</div>
-        <h2>Our Services</h2>
-        <p>AI-powered fixed-wing drone solutions for critical sectors — from energy infrastructure to border security.</p>
+      <div class="section-head fade-in">
+        <div class="section-label">02 &nbsp;/&nbsp; Services</div>
+        <h2>AI-powered aerial solutions for critical sectors.</h2>
+        <p>Mission-tailored fixed-wing deployments — from energy infrastructure to border security.</p>
       </div>
-      <div class="services-grid">
-        <div class="service-card"><div class="service-icon"><i class="fas fa-bolt"></i></div><h3>Infrastructure Inspection</h3><p>Monitoring power lines, pipelines and industrial facilities with AI-powered defect analysis over hundreds of kilometers per mission.</p></div>
-        <div class="service-card"><div class="service-icon"><i class="fas fa-mountain"></i></div><h3>Environmental Surveillance</h3><p>Forest fire early detection, agriculture monitoring, watershed protection and wildlife tracking over large areas — only possible with fixed-wing endurance.</p></div>
-        <div class="service-card"><div class="service-icon"><i class="fas fa-shield-alt"></i></div><h3>Border & Security</h3><p>Long-range border surveillance, tactical reconnaissance and persistent area monitoring with encrypted secure datalinks.</p></div>
-        <div class="service-card"><div class="service-icon"><i class="fas fa-road"></i></div><h3>Transportation Monitoring</h3><p>Railway and highway inspection, traffic flow analysis and post-incident rapid aerial assessment across extended corridors.</p></div>
-        <div class="service-card"><div class="service-icon"><i class="fas fa-satellite-dish"></i></div><h3>Telecommunications</h3><p>Cell tower inspection, antenna alignment verification and network infrastructure thermal analysis at scale.</p></div>
-        <div class="service-card"><div class="service-icon"><i class="fas fa-map-marked-alt"></i></div><h3>Mapping & Surveying</h3><p>High-resolution topographic mapping, 3D terrain modeling and precision agriculture GIS data across large territories.</p></div>
+
+      <div class="services-list">
+        <article class="service-row fade-in">
+          <div class="service-icon"><i class="fas fa-bolt" aria-hidden="true"></i></div>
+          <div class="service-body">
+            <h3>Infrastructure Inspection</h3>
+            <p>Power lines, pipelines, and industrial facilities with AI-powered defect analysis.</p>
+          </div>
+          <div class="service-outcome">1,000 km / mission</div>
+        </article>
+
+        <article class="service-row fade-in">
+          <div class="service-icon"><i class="fas fa-mountain" aria-hidden="true"></i></div>
+          <div class="service-body">
+            <h3>Environmental Surveillance</h3>
+            <p>Forest-fire early detection, watershed protection, wildlife tracking at scale.</p>
+          </div>
+          <div class="service-outcome">Early detection</div>
+        </article>
+
+        <article class="service-row fade-in">
+          <div class="service-icon"><i class="fas fa-shield-alt" aria-hidden="true"></i></div>
+          <div class="service-body">
+            <h3>Border &amp; Security</h3>
+            <p>Long-range surveillance, tactical reconnaissance and persistent area monitoring.</p>
+          </div>
+          <div class="service-outcome">Encrypted datalink</div>
+        </article>
+
+        <article class="service-row fade-in">
+          <div class="service-icon"><i class="fas fa-road" aria-hidden="true"></i></div>
+          <div class="service-body">
+            <h3>Transportation Monitoring</h3>
+            <p>Rail and highway inspection, traffic analysis, post-incident aerial assessment.</p>
+          </div>
+          <div class="service-outcome">Rapid response</div>
+        </article>
+
+        <article class="service-row fade-in">
+          <div class="service-icon"><i class="fas fa-satellite-dish" aria-hidden="true"></i></div>
+          <div class="service-body">
+            <h3>Telecommunications</h3>
+            <p>Tower inspection, antenna alignment verification, thermal network analysis.</p>
+          </div>
+          <div class="service-outcome">Thermal + optical</div>
+        </article>
+
+        <article class="service-row fade-in">
+          <div class="service-icon"><i class="fas fa-map-marked-alt" aria-hidden="true"></i></div>
+          <div class="service-body">
+            <h3>Mapping &amp; Surveying</h3>
+            <p>High-resolution topographic mapping, 3D terrain modeling, precision agriculture GIS.</p>
+          </div>
+          <div class="service-outcome">GIS-ready output</div>
+        </article>
       </div>
     </div>
   </section>
 
   <section id="technology">
     <div class="container">
-      <div class="section-header">
-        <div class="section-tag">How It Works</div>
-        <h2>Our Technology</h2>
-        <p>Edge AI fused with fixed-wing aerodynamics — real-time intelligence, no cloud dependency, mission-ready in minutes.</p>
+      <div class="section-head fade-in">
+        <div class="section-label">03 &nbsp;/&nbsp; Technology</div>
+        <h2>Edge AI fused with fixed-wing aerodynamics.</h2>
+        <p>Real-time intelligence, no cloud dependency, mission-ready in minutes.</p>
       </div>
-      <div class="tech-content">
-        <div class="tech-features">
-          <div class="tech-feature"><div class="tech-icon"><i class="fas fa-microchip"></i></div><div class="tech-text"><h4>Embedded AI Processing</h4><p>Real-time object detection and decision-making running entirely on the drone — no latency, no signal dependency. YOLOv8 inference at the edge.</p></div></div>
-          <div class="tech-feature"><div class="tech-icon"><i class="fas fa-eye"></i></div><div class="tech-text"><h4>Multi-Sensor Fusion</h4><p>Optical, thermal and multispectral imaging fused onboard for day/night operations and precise target identification at altitude.</p></div></div>
-          <div class="tech-feature"><div class="tech-icon"><i class="fas fa-puzzle-piece"></i></div><div class="tech-text"><h4>Modular Payload Bay</h4><p>Mission-specific payload swapping in under 5 minutes — inspection, surveillance, mapping, or SIGINT modules on the same fixed-wing airframe.</p></div></div>
-          <div class="tech-feature"><div class="tech-icon"><i class="fas fa-lock"></i></div><div class="tech-text"><h4>Encrypted Datalinks</h4><p>End-to-end encrypted telemetry and video with jam-resistant frequency-hopping protocols for sovereign secure operations.</p></div></div>
+
+      <div class="tech-grid">
+        <div class="tech-visual fade-in">
+          <img src="hardware/engines/dle-engine-front-with-prop.jpg" alt="Propulsion system front view with propeller — StrixEye fixed-wing UAV" loading="lazy" decoding="async" />
+          <div class="tech-pills">
+            <span class="tech-pill">YOLOv8 realtime</span>
+            <span class="tech-pill">Edge AI</span>
+            <span class="tech-pill">Thermal + EO</span>
+            <span class="tech-pill">GNSS + INS</span>
+            <span class="tech-pill">30 km link</span>
+          </div>
         </div>
-        <div class="tech-visual-wrap">
-          <div class="tech-visual">
-            <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=70" alt="Fixed-wing aircraft systems" />
-            <div class="tech-visual-overlay">
-              <div class="tech-specs">
-                <span class="tech-spec-pill">YOLOv8 Real-time</span>
-                <span class="tech-spec-pill">Edge AI</span>
-                <span class="tech-spec-pill">Thermal + Optical</span>
-                <span class="tech-spec-pill">GNSS + INS</span>
-                <span class="tech-spec-pill">30km Datalink</span>
-              </div>
+
+        <div class="tech-features fade-in">
+          <div class="tech-feature">
+            <div class="tech-feature-icon"><i class="fas fa-microchip" aria-hidden="true"></i></div>
+            <div>
+              <h4>Embedded AI Processing</h4>
+              <p>Real-time object detection and decision-making run entirely onboard. YOLOv8 inference at the edge, no latency, no signal dependency.</p>
+            </div>
+          </div>
+          <div class="tech-feature">
+            <div class="tech-feature-icon"><i class="fas fa-eye" aria-hidden="true"></i></div>
+            <div>
+              <h4>Multi-Sensor Fusion</h4>
+              <p>Optical, thermal and multispectral imaging fused onboard for day/night operations and precise target identification at altitude.</p>
+            </div>
+          </div>
+          <div class="tech-feature">
+            <div class="tech-feature-icon"><i class="fas fa-puzzle-piece" aria-hidden="true"></i></div>
+            <div>
+              <h4>Modular Payload Bay</h4>
+              <p>Mission-specific payload swaps in under five minutes — inspection, surveillance, mapping, or SIGINT modules on the same airframe.</p>
+            </div>
+          </div>
+          <div class="tech-feature">
+            <div class="tech-feature-icon"><i class="fas fa-lock" aria-hidden="true"></i></div>
+            <div>
+              <h4>Encrypted Datalinks</h4>
+              <p>End-to-end encrypted telemetry and video with jam-resistant frequency-hopping protocols for sovereign secure operations.</p>
             </div>
           </div>
         </div>
@@ -319,45 +294,102 @@ footer{background:rgba(0,0,0,.5);padding:60px 0 30px;border-top:1px solid rgba(2
     </div>
   </section>
 
+  <section id="field-ops">
+    <div class="container">
+      <div class="section-head fade-in">
+        <div class="section-label">04 &nbsp;/&nbsp; Field Operations</div>
+        <h2>From research lab to desert ridgeline.</h2>
+        <p>Active R&amp;D and mission operations across Morocco — mixed-platform test flights, ground control integration, and real-world validation alongside our fixed-wing flagship.</p>
+      </div>
+
+      <div class="gallery-grid fade-in">
+        <figure class="gallery-item gallery-item-1">
+          <img src="field-ops/helicopter-drone-flying-horse.jpg" alt="Rotorcraft UAV in flight with horseback rider below during cinematographic test flight" loading="lazy" decoding="async" />
+          <figcaption class="gallery-caption">
+            <strong>Flight Trials</strong>
+            Rotorcraft UAV · cinematographic test
+          </figcaption>
+        </figure>
+
+        <figure class="gallery-item gallery-item-2">
+          <img src="field-ops/helicopter-drone-ground.jpg" alt="StrixEye rotorcraft UAV on the ground with cliff backdrop" loading="lazy" decoding="async" />
+          <figcaption class="gallery-caption">
+            <strong>Pre-flight</strong>
+            Canyon deployment · Morocco
+          </figcaption>
+        </figure>
+
+        <figure class="gallery-item gallery-item-3">
+          <img src="field-ops/gcs-aerosensors-tablet.jpg" alt="Ground control station rugged tablet with joysticks and live mission map" loading="lazy" decoding="async" />
+          <figcaption class="gallery-caption">
+            <strong>Ground Control</strong>
+            Rugged GCS · live telemetry
+          </figcaption>
+        </figure>
+
+        <figure class="gallery-item gallery-item-4">
+          <img src="hardware/engines/dle-engine-side.jpg" alt="Internal combustion engine for long-endurance fixed-wing propulsion, side view" loading="lazy" decoding="async" />
+          <figcaption class="gallery-caption">
+            <strong>Propulsion</strong>
+            Long-endurance powertrain
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
   <section id="specs">
     <div class="container">
-      <div class="section-header">
-        <div class="section-tag">Platform Data</div>
-        <h2>Technical Specifications</h2>
-        <p>Engineered for endurance, reliability and sovereign operations in demanding environments.</p>
+      <div class="section-head fade-in">
+        <div class="section-label">05 &nbsp;/&nbsp; Specifications</div>
+        <h2>Platform data sheet.</h2>
+        <p>Engineered for endurance, reliability, and sovereign operations in demanding environments.</p>
       </div>
-      <div class="specs-grid">
-        <div class="spec-block">
-          <h4><i class="fas fa-plane" style="margin-right:8px"></i>Airframe</h4>
-          <div class="spec-row"><span class="spec-label">Configuration</span><span class="spec-value">Fixed-Wing, Pusher</span></div>
-          <div class="spec-row"><span class="spec-label">Wingspan</span><span class="spec-value">3.2 m</span></div>
-          <div class="spec-row"><span class="spec-label">MTOW</span><span class="spec-value">18 kg</span></div>
-          <div class="spec-row"><span class="spec-label">Payload Capacity</span><span class="spec-value">10 kg</span></div>
-          <div class="spec-row"><span class="spec-label">Material</span><span class="spec-value">Carbon Fibre / Composite</span></div>
+
+      <div class="specs-sheet fade-in">
+        <div class="specs-sheet-head">
+          <div class="specs-sheet-id">
+            Platform · <strong>STRIXEYE FX-01</strong> · Fixed-Wing Intelligent UAV
+          </div>
+          <a href="#contact" class="btn btn-secondary"><i class="fas fa-file-pdf" aria-hidden="true"></i> Request Spec Sheet</a>
         </div>
-        <div class="spec-block">
-          <h4><i class="fas fa-tachometer-alt" style="margin-right:8px"></i>Performance</h4>
-          <div class="spec-row"><span class="spec-label">Cruise Speed</span><span class="spec-value">120 km/h</span></div>
-          <div class="spec-row"><span class="spec-label">Max Speed</span><span class="spec-value">150 km/h</span></div>
-          <div class="spec-row"><span class="spec-label">Endurance</span><span class="spec-value">8+ hours</span></div>
-          <div class="spec-row"><span class="spec-label">Operational Range</span><span class="spec-value">1,000 km</span></div>
-          <div class="spec-row"><span class="spec-label">Service Ceiling</span><span class="spec-value">4,000 m</span></div>
-        </div>
-        <div class="spec-block">
-          <h4><i class="fas fa-microchip" style="margin-right:8px"></i>AI & Sensors</h4>
-          <div class="spec-row"><span class="spec-label">AI Platform</span><span class="spec-value">NVIDIA Jetson Orin</span></div>
-          <div class="spec-row"><span class="spec-label">Detection Model</span><span class="spec-value">YOLOv8 Custom</span></div>
-          <div class="spec-row"><span class="spec-label">Optical Camera</span><span class="spec-value">4K / 30fps EO</span></div>
-          <div class="spec-row"><span class="spec-label">Thermal Camera</span><span class="spec-value">LWIR 640×512</span></div>
-          <div class="spec-row"><span class="spec-label">Inference Latency</span><span class="spec-value">&lt;50 ms</span></div>
-        </div>
-        <div class="spec-block">
-          <h4><i class="fas fa-satellite-dish" style="margin-right:8px"></i>Communications</h4>
-          <div class="spec-row"><span class="spec-label">Datalink Range</span><span class="spec-value">30 km LOS</span></div>
-          <div class="spec-row"><span class="spec-label">Video Downlink</span><span class="spec-value">HD Encrypted</span></div>
-          <div class="spec-row"><span class="spec-label">Navigation</span><span class="spec-value">GPS / GLONASS / INS</span></div>
-          <div class="spec-row"><span class="spec-label">GNSS Anti-Spoofing</span><span class="spec-value">Yes</span></div>
-          <div class="spec-row"><span class="spec-label">Autonomous Mode</span><span class="spec-value">Full + Waypoint</span></div>
+
+        <div class="specs-grid">
+          <div class="spec-block">
+            <h4><i class="fas fa-plane" aria-hidden="true"></i> Airframe</h4>
+            <div class="spec-row"><span class="spec-label">Configuration</span><span class="spec-value">Fixed-wing, pusher</span></div>
+            <div class="spec-row"><span class="spec-label">Wingspan</span><span class="spec-value">3.2 m</span></div>
+            <div class="spec-row"><span class="spec-label">MTOW</span><span class="spec-value">18 kg</span></div>
+            <div class="spec-row"><span class="spec-label">Payload</span><span class="spec-value">10 kg</span></div>
+            <div class="spec-row"><span class="spec-label">Material</span><span class="spec-value">Carbon / composite</span></div>
+          </div>
+
+          <div class="spec-block">
+            <h4><i class="fas fa-tachometer-alt" aria-hidden="true"></i> Performance</h4>
+            <div class="spec-row"><span class="spec-label">Cruise speed</span><span class="spec-value">120 km/h</span></div>
+            <div class="spec-row"><span class="spec-label">Max speed</span><span class="spec-value">150 km/h</span></div>
+            <div class="spec-row"><span class="spec-label">Endurance</span><span class="spec-value">8+ hours</span></div>
+            <div class="spec-row"><span class="spec-label">Range</span><span class="spec-value">1,000 km</span></div>
+            <div class="spec-row"><span class="spec-label">Service ceiling</span><span class="spec-value">4,000 m</span></div>
+          </div>
+
+          <div class="spec-block">
+            <h4><i class="fas fa-microchip" aria-hidden="true"></i> AI &amp; Sensors</h4>
+            <div class="spec-row"><span class="spec-label">AI platform</span><span class="spec-value">NVIDIA Jetson Orin</span></div>
+            <div class="spec-row"><span class="spec-label">Detection model</span><span class="spec-value">YOLOv8 custom</span></div>
+            <div class="spec-row"><span class="spec-label">Optical camera</span><span class="spec-value">4K / 30 fps EO</span></div>
+            <div class="spec-row"><span class="spec-label">Thermal camera</span><span class="spec-value">LWIR 640 × 512</span></div>
+            <div class="spec-row"><span class="spec-label">Inference latency</span><span class="spec-value">&lt; 50 ms</span></div>
+          </div>
+
+          <div class="spec-block">
+            <h4><i class="fas fa-satellite-dish" aria-hidden="true"></i> Communications</h4>
+            <div class="spec-row"><span class="spec-label">Datalink range</span><span class="spec-value">30 km LOS</span></div>
+            <div class="spec-row"><span class="spec-label">Video downlink</span><span class="spec-value">HD encrypted</span></div>
+            <div class="spec-row"><span class="spec-label">Navigation</span><span class="spec-value">GPS / GLONASS / INS</span></div>
+            <div class="spec-row"><span class="spec-label">Anti-spoofing</span><span class="spec-value">GNSS secured</span></div>
+            <div class="spec-row"><span class="spec-label">Autonomy</span><span class="spec-value">Full + waypoint</span></div>
+          </div>
         </div>
       </div>
     </div>
@@ -365,41 +397,62 @@ footer{background:rgba(0,0,0,.5);padding:60px 0 30px;border-top:1px solid rgba(2
 
   <section id="contact">
     <div class="container">
-      <div class="section-header">
-        <div class="section-tag">Get In Touch</div>
-        <h2>Let's Build the Future Together</h2>
-        <p>Whether you're a government agency, industrial operator or potential partner — we want to hear from you.</p>
+      <div class="section-head fade-in">
+        <div class="section-label">06 &nbsp;/&nbsp; Contact</div>
+        <h2>Let's build the future together.</h2>
+        <p>Government agency, industrial operator, or partner — we respond within 24 hours.</p>
       </div>
-      <div class="contact-wrap">
-        <div class="contact-info">
-          <h3>Ready to Deploy Drone Intelligence?</h3>
-          <p>Contact us to discuss how STRIXEYE's sovereign fixed-wing UAV solutions can transform your operations. We respond within 24 hours.</p>
+
+      <div class="contact-grid">
+        <div class="contact-info fade-in">
+          <h3>Ready to deploy drone intelligence?</h3>
+          <p>Contact us to discuss how STRIXEYE's sovereign fixed-wing UAV solutions can transform your operations.</p>
+
           <div class="contact-details">
             <div class="contact-item">
-              <div class="contact-item-icon"><i class="fas fa-envelope"></i></div>
-              <div><div class="contact-item-label">Email</div><a href="mailto:contact@strixeye.ma">contact@strixeye.ma</a></div>
+              <div class="contact-item-icon"><i class="fas fa-envelope" aria-hidden="true"></i></div>
+              <div>
+                <div class="contact-item-label">Email</div>
+                <a href="mailto:contact@strixeye.ma">contact@strixeye.ma</a>
+              </div>
             </div>
             <div class="contact-item">
-              <div class="contact-item-icon"><i class="fas fa-map-marker-alt"></i></div>
-              <div><div class="contact-item-label">Location</div><p>Témara, Morocco</p></div>
+              <div class="contact-item-icon"><i class="fas fa-map-marker-alt" aria-hidden="true"></i></div>
+              <div>
+                <div class="contact-item-label">Location</div>
+                <p>Témara, Morocco</p>
+              </div>
             </div>
             <div class="contact-item">
-              <div class="contact-item-icon"><i class="fas fa-globe"></i></div>
-              <div><div class="contact-item-label">Website</div><a href="https://strixeye.ma">strixeye.ma</a></div>
+              <div class="contact-item-icon"><i class="fas fa-globe" aria-hidden="true"></i></div>
+              <div>
+                <div class="contact-item-label">Website</div>
+                <a href="https://strixeye.ma">strixeye.ma</a>
+              </div>
             </div>
           </div>
         </div>
-        <div class="contact-form">
-          <form id="contactForm">
+
+        <div class="contact-form fade-in">
+          <form id="contactForm" action="https://formspree.io/f/TODO_FORMSPREE_ID" method="POST" novalidate>
             <div class="form-row">
-              <div class="form-group"><label>First Name</label><input type="text" placeholder="Ahmed" required /></div>
-              <div class="form-group"><label>Last Name</label><input type="text" placeholder="Benali" required /></div>
+              <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input id="firstName" name="first_name" type="text" autocomplete="given-name" placeholder="Ahmed" required />
+              </div>
+              <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input id="lastName" name="last_name" type="text" autocomplete="family-name" placeholder="Benali" required />
+              </div>
             </div>
-            <div class="form-group"><label>Email</label><input type="email" placeholder="ahmed@company.ma" required /></div>
             <div class="form-group">
-              <label>Subject</label>
-              <select>
-                <option value="">Select a topic...</option>
+              <label for="email">Email</label>
+              <input id="email" name="_replyto" type="email" autocomplete="email" placeholder="ahmed@company.ma" required />
+            </div>
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <select id="subject" name="subject" required>
+                <option value="">Select a topic…</option>
                 <option>Infrastructure Inspection</option>
                 <option>Border &amp; Security</option>
                 <option>Environmental Surveillance</option>
@@ -408,106 +461,75 @@ footer{background:rgba(0,0,0,.5);padding:60px 0 30px;border-top:1px solid rgba(2
                 <option>Other</option>
               </select>
             </div>
-            <div class="form-group"><label>Message</label><textarea placeholder="Tell us about your project or question..." required></textarea></div>
-            <button type="submit" class="btn btn-primary btn-full"><i class="fas fa-paper-plane"></i> Send Message</button>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Tell us about your project or question…" required></textarea>
+            </div>
+
+            <div class="form-honeypot" aria-hidden="true">
+              <label for="_gotcha">Leave this field empty</label>
+              <input id="_gotcha" name="_gotcha" type="text" tabindex="-1" autocomplete="off" />
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-full">
+              <i class="fas fa-paper-plane" aria-hidden="true"></i> Send Message
+            </button>
+            <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
           </form>
         </div>
       </div>
     </div>
   </section>
-
-  <footer>
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a class="footer-logo-wrap" href="#home"><img src="logo.png" alt="" /><span>STRIXEYE</span></a>
-          <p>Deep-tech drone company building sovereign AI-powered fixed-wing UAVs for Morocco and beyond.</p>
-        </div>
-        <div class="footer-col"><h4>Company</h4><ul><li><a href="#about">About Us</a></li><li><a href="#technology">Technology</a></li><li><a href="#specs">Specifications</a></li><li><a href="#contact">Contact</a></li></ul></div>
-        <div class="footer-col"><h4>Services</h4><ul><li><a href="#services">Inspection</a></li><li><a href="#services">Surveillance</a></li><li><a href="#services">Mapping</a></li><li><a href="#services">Security</a></li></ul></div>
-        <div class="footer-col"><h4>Contact</h4><ul><li><a href="mailto:contact@strixeye.ma">contact@strixeye.ma</a></li><li><a href="#">Témara, Morocco</a></li></ul></div>
-      </div>
-      <div class="footer-bottom">
-        <p>© <span id="year"></span> STRIXEYE — All rights reserved</p>
-        <div class="social-links">
-          <a class="social-link" href="#"><i class="fab fa-linkedin-in"></i></a>
-          <a class="social-link" href="#"><i class="fab fa-twitter"></i></a>
-          <a class="social-link" href="#"><i class="fab fa-instagram"></i></a>
-        </div>
-      </div>
-    </div>
-  </footer>
 </main>
 
-<script>
-document.addEventListener('DOMContentLoaded',()=>{
-  const introOverlay=document.getElementById('introOverlay');
-  const pageMain=document.getElementById('pageMain');
-  const headerInner=document.getElementById('headerInner');
-  function updateHeaderSpacing(){
-    const h=headerInner.getBoundingClientRect().height+12;
-    document.documentElement.style.setProperty('--header-height',h+'px');
-    document.querySelectorAll('section[id]').forEach(s=>{s.style.scrollMarginTop=(h+10)+'px'});
-    document.querySelector('main').style.paddingTop=(h+18)+'px';
-  }
-  updateHeaderSpacing();
-  window.addEventListener('resize',updateHeaderSpacing);
-  const prefersReduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function finishIntro(){
-    introOverlay.classList.add('fade-out');
-    document.body.classList.remove('intro-hidden');
-    pageMain.setAttribute('aria-hidden','false');
-    setTimeout(()=>{if(introOverlay.parentNode)introOverlay.parentNode.removeChild(introOverlay)},950);
-  }
-  if(prefersReduced){finishIntro()}else{
-    const t=setTimeout(finishIntro,3500);
-    introOverlay.addEventListener('click',()=>{clearTimeout(t);finishIntro()});
-    window.addEventListener('keydown',e=>{if(e.key==='Escape'){clearTimeout(t);finishIntro()}});
-  }
-  window.addEventListener('scroll',()=>{headerInner.classList.toggle('scrolled',window.scrollY>40)});
-  const menuToggle=document.getElementById('menuToggle');
-  let mobileOpen=false;
-  function toggleMobileMenu(open){
-    mobileOpen=open??!mobileOpen;
-    menuToggle.setAttribute('aria-expanded',mobileOpen);
-    menuToggle.innerHTML=mobileOpen?'<i class="fas fa-times"></i>':'<i class="fas fa-bars"></i>';
-    const existing=document.getElementById('mobileNav');
-    if(mobileOpen&&!existing){
-      const ov=document.createElement('div');
-      ov.id='mobileNav';
-      Object.assign(ov.style,{position:'fixed',left:'16px',right:'16px',top:(headerInner.getBoundingClientRect().bottom+8)+'px',background:'rgba(5,18,26,0.97)',zIndex:1300,padding:'16px',borderRadius:'14px',display:'grid',gap:'8px',boxShadow:'0 30px 80px rgba(0,0,0,.7)',border:'1px solid rgba(255,255,255,.07)'});
-      ['home','about','services','technology','specs','contact'].forEach(id=>{
-        const a=document.createElement('a');
-        a.href='#'+id;a.textContent=id.charAt(0).toUpperCase()+id.slice(1);
-        Object.assign(a.style,{padding:'12px 16px',borderRadius:'8px',display:'block',color:'white',textDecoration:'none',fontWeight:'700',fontSize:'15px'});
-        a.addEventListener('click',()=>toggleMobileMenu(false));
-        ov.appendChild(a);
-      });
-      document.body.appendChild(ov);
-    }else if(!mobileOpen&&existing){existing.remove()}
-  }
-  menuToggle&&menuToggle.addEventListener('click',()=>toggleMobileMenu());
-  document.querySelectorAll('a[href^="#"]').forEach(a=>{
-    a.addEventListener('click',function(e){
-      const href=this.getAttribute('href');
-      if(!href||href==='#')return;
-      const target=document.querySelector(href);
-      if(!target)return;
-      e.preventDefault();
-      const h=headerInner.getBoundingClientRect().height+12;
-      window.scrollTo({top:target.getBoundingClientRect().top+window.scrollY-h-8,behavior:'smooth'});
-      if(mobileOpen)toggleMobileMenu(false);
-    });
-  });
-  document.getElementById('contactForm')?.addEventListener('submit',function(e){
-    e.preventDefault();
-    const btn=this.querySelector('button[type=submit]');
-    btn.innerHTML='<i class="fas fa-check"></i> Message Sent!';
-    btn.style.background='linear-gradient(90deg,#00c98d,#00b87d)';
-    setTimeout(()=>{btn.innerHTML='<i class="fas fa-paper-plane"></i> Send Message';btn.style.background='';this.reset()},3500);
-  });
-  document.getElementById('year').textContent=new Date().getFullYear();
-});
-</script>
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="footer-logo" href="#home">
+          <img src="logo.png" alt="" role="presentation" width="32" height="32" />
+          <span>STRIXEYE</span>
+        </a>
+        <p>Deep-tech drone company building sovereign AI-powered fixed-wing UAVs for Morocco and beyond.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#technology">Technology</a></li>
+          <li><a href="#specs">Specifications</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Inspection</a></li>
+          <li><a href="#services">Surveillance</a></li>
+          <li><a href="#services">Mapping</a></li>
+          <li><a href="#services">Security</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:contact@strixeye.ma">contact@strixeye.ma</a></li>
+          <li>Témara, Morocco</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="year"></span> STRIXEYE — All rights reserved</p>
+      <div class="social-links">
+        <a class="social-link" href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+        <a class="social-link" href="#" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+        <a class="social-link" href="#" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js" defer></script>
+<script src="js/contact.js" defer></script>
 </body>
 </html>
