@@ -29,7 +29,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
-<link rel="preload" as="image" href="field-ops/desert-ops-field.jpg" />
+<link rel="preload" as="image" href="hardware/airframes/fixed-wing-fleet.jpg" />
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -72,7 +72,7 @@
     </a>
     <nav class="main-nav" aria-label="Primary">
       <a href="#about">About</a>
-      <a href="#services">Services</a>
+      <a href="#platforms">Platforms</a>
       <a href="#technology">Technology</a>
       <a href="#field-ops">Engineering</a>
       <a href="#specs">Specs</a>
@@ -88,7 +88,7 @@
 
   <section class="hero" id="home">
     <div class="hero-media" aria-hidden="true">
-      <video autoplay muted loop playsinline preload="metadata" poster="field-ops/desert-ops-field.jpg">
+      <video autoplay muted loop playsinline preload="metadata" poster="hardware/airframes/fixed-wing-fleet.jpg">
         <source src="demo.mp4" type="video/mp4" />
       </video>
     </div>
@@ -167,9 +167,74 @@
         </div>
 
         <div class="about-img fade-in">
-          <img src="https://images.unsplash.com/photo-1473968512647-3e447244af8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=70" alt="Fixed-wing aircraft in flight against open sky" loading="lazy" decoding="async" />
-          <div class="about-img-caption">Fixed-wing platform · reference imagery</div>
+          <img src="platforms/falcon-engineer.png" alt="STRIXEYE engineer holding a bio-mimetic falcon-form fixed-wing UAV" loading="lazy" decoding="async" />
+          <div class="about-img-caption">Bio-mimetic UAV · in-house engineering</div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="platforms">
+    <div class="container">
+      <div class="section-head fade-in">
+        <div class="section-label">02 &nbsp;/&nbsp; Platforms</div>
+        <h2>Three product lines. One sovereign stack.</h2>
+        <p>From bio-mimetic reconnaissance to long-endurance fixed-wing and persistent aerial display platforms — purpose-built for distinct mission profiles.</p>
+      </div>
+
+      <div class="platforms-stack">
+
+        <article class="platform fade-in">
+          <div class="platform-image">
+            <img src="platforms/falcon-detail.jpg" alt="Bio-mimetic falcon-form UAV — full body view showing wing detail" loading="lazy" decoding="async" />
+          </div>
+          <div class="platform-body">
+            <div class="platform-tag">Bio-mimetic Reconnaissance</div>
+            <h3>The Falcon — bio-mimetic UAV.</h3>
+            <p>A bird-form reconnaissance platform that flies undetected through visual signatures designed to blend with native fauna. Real-time onboard AI, low acoustic profile, manual or autonomous launch.</p>
+            <ul class="platform-features">
+              <li>Bird-silhouette airframe — visual stealth in natural habitats</li>
+              <li>Hand-launched · low logistics footprint</li>
+              <li>Onboard EO sensor + edge inference</li>
+            </ul>
+            <span class="platform-meta">Flagship · in development</span>
+          </div>
+        </article>
+
+        <article class="platform reverse fade-in">
+          <div class="platform-image">
+            <img src="hardware/airframes/fixed-wing-fleet.jpg" alt="Fleet of grey fixed-wing UAV airframes assembled in workshop" loading="lazy" decoding="async" />
+          </div>
+          <div class="platform-body">
+            <div class="platform-tag">Long-endurance fixed-wing</div>
+            <h3>FX-class fixed-wing fleet.</h3>
+            <p>Carbon-composite fixed-wing platforms engineered for hours-long missions across hundreds of kilometres. Modular payload bay, encrypted datalink, fully sovereign manufacturing chain.</p>
+            <ul class="platform-features">
+              <li>8+ hour endurance · 1,000 km range</li>
+              <li>Modular payload bay — EO, thermal, SIGINT</li>
+              <li>NVIDIA Jetson Orin onboard</li>
+            </ul>
+            <span class="platform-meta">Production line</span>
+          </div>
+        </article>
+
+        <article class="platform fade-in">
+          <div class="platform-image">
+            <img src="platforms/blimp-stadium.jpg" alt="STRIXEYE aerial display blimp with LED billboard hovering over a packed stadium at night" loading="lazy" decoding="async" />
+          </div>
+          <div class="platform-body">
+            <div class="platform-tag">Aerial Display Platform</div>
+            <h3>Persistent aerial display blimp.</h3>
+            <p>Lighter-than-air platforms with integrated LED billboards for stadium events, urban activations and persistent overwatch. Engineered for multi-hour station-keeping at low altitude.</p>
+            <ul class="platform-features">
+              <li>360° visible LED display surface</li>
+              <li>Multi-hour station-keeping</li>
+              <li>Live broadcast & telemetry uplink</li>
+            </ul>
+            <span class="platform-meta">Concept · live demo program</span>
+          </div>
+        </article>
+
       </div>
     </div>
   </section>
@@ -177,7 +242,7 @@
   <section id="services">
     <div class="container">
       <div class="section-head fade-in">
-        <div class="section-label">02 &nbsp;/&nbsp; Services</div>
+        <div class="section-label">03 &nbsp;/&nbsp; Services</div>
         <h2>AI-powered aerial solutions for critical sectors.</h2>
         <p>Mission-tailored fixed-wing deployments — from energy infrastructure to border security.</p>
       </div>
@@ -243,14 +308,14 @@
   <section id="technology">
     <div class="container">
       <div class="section-head fade-in">
-        <div class="section-label">03 &nbsp;/&nbsp; Technology</div>
+        <div class="section-label">04 &nbsp;/&nbsp; Technology</div>
         <h2>Edge AI fused with fixed-wing aerodynamics.</h2>
         <p>Real-time intelligence, no cloud dependency, mission-ready in minutes.</p>
       </div>
 
       <div class="tech-grid">
         <div class="tech-visual fade-in">
-          <img src="hardware/engines/dle-engine-front-with-prop.jpg" alt="Propulsion system front view with propeller — StrixEye fixed-wing UAV" loading="lazy" decoding="async" />
+          <img src="hardware/airframes/solar-uav-disassembled.jpg" alt="Disassembled solar-paneled long-endurance fixed-wing UAV with avionics laid out in workshop" loading="lazy" decoding="async" />
           <div class="tech-pills">
             <span class="tech-pill">YOLOv8 realtime</span>
             <span class="tech-pill">Edge AI</span>
@@ -297,25 +362,25 @@
   <section id="field-ops">
     <div class="container">
       <div class="section-head fade-in">
-        <div class="section-label">04 &nbsp;/&nbsp; Engineering</div>
+        <div class="section-label">05 &nbsp;/&nbsp; Engineering</div>
         <h2>Built in the workshop. Tested in the field.</h2>
         <p>Propulsion, mission systems and ground operations — engineered in-house, validated in real Moroccan terrain. The substance behind the platform.</p>
       </div>
 
       <div class="gallery-grid fade-in">
         <figure class="gallery-item gallery-item-1">
-          <img src="hardware/engines/dle-engine-top-with-prop.jpg" alt="Long-endurance UAV propulsion engine with propeller, top view" loading="lazy" decoding="async" />
+          <img src="hardware/airframes/fixed-wing-workbench.png" alt="Fixed-wing UAV prototype on workbench inside the StrixEye workshop" loading="lazy" decoding="async" />
           <figcaption class="gallery-caption">
-            <strong>Propulsion R&amp;D</strong>
-            Long-endurance powertrain · custom integration
+            <strong>Airframe Build</strong>
+            Composite assembly · in-house
           </figcaption>
         </figure>
 
         <figure class="gallery-item gallery-item-2">
-          <img src="hardware/engines/dle-engine-side.jpg" alt="UAV propulsion engine bench view, side profile" loading="lazy" decoding="async" />
+          <img src="hardware/engines/dle-engine-front-with-prop.jpg" alt="UAV propulsion engine with propeller, front view" loading="lazy" decoding="async" />
           <figcaption class="gallery-caption">
-            <strong>Bench Test</strong>
-            Powertrain detail · workshop
+            <strong>Propulsion R&amp;D</strong>
+            Long-endurance powertrain
           </figcaption>
         </figure>
 
@@ -341,7 +406,7 @@
   <section id="specs">
     <div class="container">
       <div class="section-head fade-in">
-        <div class="section-label">05 &nbsp;/&nbsp; Specifications</div>
+        <div class="section-label">06 &nbsp;/&nbsp; Specifications</div>
         <h2>Platform data sheet.</h2>
         <p>Engineered for endurance, reliability, and sovereign operations in demanding environments.</p>
       </div>
@@ -398,7 +463,7 @@
   <section id="contact">
     <div class="container">
       <div class="section-head fade-in">
-        <div class="section-label">06 &nbsp;/&nbsp; Contact</div>
+        <div class="section-label">07 &nbsp;/&nbsp; Contact</div>
         <h2>Let's build the future together.</h2>
         <p>Government agency, industrial operator, or partner — we respond within 24 hours.</p>
       </div>
@@ -496,6 +561,7 @@
         <h4>Company</h4>
         <ul>
           <li><a href="#about">About</a></li>
+          <li><a href="#platforms">Platforms</a></li>
           <li><a href="#technology">Technology</a></li>
           <li><a href="#specs">Specifications</a></li>
           <li><a href="#contact">Contact</a></li>

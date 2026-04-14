@@ -4,7 +4,7 @@
   const headerInner = document.getElementById('headerInner');
   const header = document.querySelector('header');
   const menuToggle = document.getElementById('menuToggle');
-  const navItems = ['home', 'about', 'services', 'technology', 'field-ops', 'specs', 'contact'];
+  const navItems = ['home', 'about', 'platforms', 'services', 'technology', 'field-ops', 'specs', 'contact'];
 
   const updateHeaderHeight = () => {
     if (!headerInner) return;
